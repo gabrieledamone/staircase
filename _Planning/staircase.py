@@ -9,13 +9,13 @@ objective is to avoid up and down movements and stay as much same level as possi
 have different level stations at different positions on the workspace
 have ready made arrays for brick stations dependent on height
 '''
+import map as map
 
 ### building a staircase from ... (wait for it) staircase height stations!
 
 ## preparation
-# ask for height of staircase
-height = raw_input("Height of Staircase: ")
-print("Building staircase of height" + str(height))
+height = raw_input("Height of Staircase: ") # ask for height of staircase
+print("Building staircase of height" + str(height)) # output for transparency
 heightAmount = { # define amount of bricks necessary dependent on height
 	1: 1,
 	2: 3,
@@ -23,14 +23,23 @@ heightAmount = { # define amount of bricks necessary dependent on height
 	4: 10,
 	5: 15,
 }
-brickNums = heightAmount(height) # count of amount of bricks necessary = length of location array
+brickNums = heightAmount(height) # count amount of bricks necessary = length of location array]
 
 
-# load options array of height station maps, order of bricks is order of pick up: right to left view from top
-# read location/destination array from options array from height with locations in order of all bricks (according to logic) and where they need to go
-# define actual array reading actual locations of bricks for the robot to avoid obstacles
-# define station array listing starting locations for bricks
-# define destination array for destination locations on where bricks need to go
+locationDestinationOptions = [map.one, map.two, map.three, map.four, map.five] # load options array of height station maps, order of bricks is order of pick up: right to left view from top
+
+heightMap = [
+[],
+[],
+[],
+[],
+]
+
+
+locationDestinationMap = locationDestinationOptions[height-1] # read location/destination array from options array from height with locations in order of all bricks (according to logic) and where they need to go
+actual = # define actual array reading actual locations of bricks for the robot to avoid obstacles
+station = # define station array listing starting locations for bricks
+destination = # define destination array for destination locations on where bricks need to go
 
 ## pick + place function
 # read location of brick # in location/destination array
