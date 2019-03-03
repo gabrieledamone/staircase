@@ -81,4 +81,10 @@ Contents
 	- Feeding the brick manually
 	- Positioning strategically the stock bricks
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Working with FRANKA Emika
 
+   franka
+   workstation
+   operating
