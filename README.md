@@ -40,7 +40,30 @@
 	- Exploring possible solutions / Giving up on MoveIt
 - IK Solver
 	- Picking the Brick
-	- 
+		- Gripper not wide enough to pick brick 
+		- The brick had to be turned on the side, but the centre of gravity was not in the centre and the brick kept falling
+		- We changed the centre of gravity and managed to pick the brick correctly
+		- The tutors made the gripper wider, we managed to pick up the brick from the horizontal position
+		- Some bricks were sliding away, therefore we increased the friction of the brick
+- Motion planning 
+- Making the robot fully Autonomous
+	- User input for number of stairs
+- Robustness
+	- How do we solve misaligned object orientation? 
+- Error Detection
+	- Failing to grasp triggers a regrasping attempt
+- Ambition
+Human level performance, with one arm!
+Outstanding features
+Pushing mechanism
+Speed
+Motion Planning
+Redundancy Resolution
+Fixing elbow and orientation of end effector?
+Design of initial workspace
+Feeding the brick manually
+Positioning the prick
+
 
 ## Clone the repository
 
