@@ -32,6 +32,7 @@
 
 ## Contents
 - Setting up Franka Emika Panda & Workstation
+- Project Specifications & Requirements
 - Using MoveIt with the RViz & Gazebo Implementation
 	- Introduction to MoveIt
 	- Running the Pick and Place demo in RViz
