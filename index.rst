@@ -1,34 +1,100 @@
-<h1 align="center">
-	<img width="400" src="docs/source/_static/cover.png" alt="Awesome">
-  <br>
-  Design Engineering Staircase Robot
-</h1>
+**********************************
+DE3-ROB1 CHESS Group Documentation
+**********************************
 
-<h4 align="center">
-  <a href="http://de3-rob1-chess.rtfd.io">View the Project Documentation online</a>
-  <br><br>
-  <img width="80" src="http://readthedocs.org/projects/de3-rob1-chess/badge/?version=latest" alt="Documentation Status">
-</h4>
+About
+=====
 
-<p align="center">
-	<sub>Design Engineering, Imperial College London</sub>
-</p>
-<br>
-<p align="center">
-	<a href="https://vimeo.com/291377091" >
-	<img width="600" src="vimeo.png" alt="Click to play"></a>
-</h1>
-<br>
+This is the documentation for the group STAIRCASE Project for the Robotics 1 module in Design Engineering, Imperial College London, in March 2019.
 
-## The Team
+The project is hosted on GitHub: https://github.com/gabrieledamone/staircase
 
-- Gabriele D'Amone 
+The Authors
+-----------
+
+- Gabriele D'Amone (gabriele.damone16@imperial.ac.uk)
 - SeungHui Huh 
 - YongXuam Li
 - Huyang Liu 
 - Fred Eric Macher 
 - William Kwasi Pepera 
 - Federico Tiersen 
+
+
+
+Summary
+=======
+
+The goal of this project was to create a fully automated staircase-builder robot by applying code to a FRANKA Panda arm. The project was written in Python and ROS was used to interface with FRANKA.
+
+...was used..
+
+Future improvements to the project could include...
+
+Popular Links
+=============
+
+* `Using Python to control Franka (without ROS)`_.
+* `Using Python to control Franka with ROS topics`_.
+* `Converting points between reference frames`_.
+
+.. _`Using Python to control Franka (without ROS)`: operating.html
+.. _`Using Python to control Franka with ROS topics`: franka_ros.html
+.. _`Converting points between reference frames`: calibration.html
+
+Using Test Scripts
+==================
+
+Throughout our project we used test scripts. These can be seen in the ``tests`` folder. To run these tests properly (e.g. ``test_camera.py``) you should type the following into the terminal::
+
+  cd DE3-ROB1-CHESS/
+  python -m tests.test_camera.py
+
+This is to ensure relative imports work properly, as every import is relative to the project level directory.
+
+Contents
+========
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Working with FRANKA Emika
+
+   franka
+   workstation
+   operating
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Project Development
+
+   camera
+   calibration
+   perception
+   chess-engine
+   motion
+   controller
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Project Management
+
+   project-proposal
+   project-plan
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Appendix
+
+   resources
+   ground-rules
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
 
 ## Contents
 - Setting up Franka Emika Panda & Workstation
@@ -67,32 +133,3 @@
 	- Positioning strategically the stock bricks
 
 
-## Clone the repository
-
-```bash
-git clone http://github.com/nebbles/DE3-ROB1-CHESS
-```
-
-## Compiling the documentation offline
-
-```bash
-cd docs/
-make html
-open build/html/index.html
-```
-
-## Popular source code
-
-* Source code for controlling Franka with Python (uses ROS)
-
-```bash
-svn export https://github.com/nebbles/DE3-ROB1-CHESS/trunk/franka/franka_control_ros.py
-```
-
-* Source code for converting between reference frames
-
-```bash
-svn export https://github.com/nebbles/DE3-ROB1-CHESS/trunk/tools/transform.py
-```
-
-![LICENSE](CC4.0-BY.jpg)
