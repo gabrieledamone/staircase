@@ -42,61 +42,10 @@ Popular Links
 .. _`Using Python to control Franka with ROS topics`: franka_ros.html
 .. _`Converting points between reference frames`: calibration.html
 
-Using Test Scripts
-==================
-
-Throughout our project we used test scripts. These can be seen in the ``tests`` folder. To run these tests properly (e.g. ``test_camera.py``) you should type the following into the terminal::
-
-  cd DE3-ROB1-CHESS/
-  python -m tests.test_camera.py
-
-This is to ensure relative imports work properly, as every import is relative to the project level directory.
 
 Contents
 ========
 
-.. toctree::
-   :maxdepth: 2
-   :caption: Working with FRANKA Emika
-
-   franka
-   workstation
-   operating
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Project Development
-
-   camera
-   calibration
-   perception
-   chess-engine
-   motion
-   controller
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Project Management
-
-   project-proposal
-   project-plan
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Appendix
-
-   resources
-   ground-rules
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
-
-## Contents
 - Setting up Franka Emika Panda & Workstation
 - Project Specifications & Requirements
 - Using MoveIt with the RViz & Gazebo Implementation
