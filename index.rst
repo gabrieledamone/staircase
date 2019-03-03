@@ -16,7 +16,7 @@ The Authors
 - SeungHui Huh 
 - YongXuam Li
 - Huyang Liu 
-- Fred Eric Macher 
+- Frederic Macher (frederic.macher16@imperial.ac.uk)
 - William Kwasi Pepera 
 - Federico Tiersen 
 
