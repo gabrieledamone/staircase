@@ -53,16 +53,17 @@
 - Error Detection
 	- Failing to grasp triggers a regrasping attempt
 - Ambition
-Human level performance, with one arm!
-Outstanding features
-Pushing mechanism
-Speed
-Motion Planning
-Redundancy Resolution
-Fixing elbow and orientation of end effector?
-Design of initial workspace
-Feeding the brick manually
-Positioning the prick
+	- Human level performance, with one arm!
+- Outstanding features
+	- Pushing mechanism
+- Speed
+	- Trapezium Velocity Profile
+- Motion Planning
+- Redundancy Resolution
+	- Fixing elbow or orientation of end effector?
+- Design of initial workspace
+	- Feeding the brick manually
+	- Positioning strategically the stock bricks
 
 
 ## Clone the repository
