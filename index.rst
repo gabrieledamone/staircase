@@ -85,6 +85,6 @@ Contents
    :maxdepth: 2
    :caption: Working with FRANKA Emika
 
-   franka
+
    workstation
-   operating
+
