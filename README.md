@@ -20,15 +20,27 @@
 </h1>
 <br>
 
-## Group
+## The Team
 
-- Gabriele D'Amone ([@AnnaBernbaum](https://github.com/AnnaBernbaum))
-- Ben Greenberg ([@nebbles](https://github.com/nebbles))
-- Josephine Latreille ([@josephine-latreille](https://github.com/josephine-latreille))
-- Sanish Mistry ([@sanish96](https://github.com/sanish96))
-- Leah Pattison ([@leahpattison](https://github.com/leahpattison))
-- Paolo Ruegg ([@pa17](https://github.com/pa17))
-- Sylvia Zhang ([@SylviaZhanggg](https://github.com/SylviaZhanggg))
+- Gabriele D'Amone 
+- SeungHui Huh 
+- YongXuam Li
+- Huyang Liu 
+- Fred Eric Macher 
+- William Kwasi Pepera 
+- Federico Tiersen 
+
+## Contents
+- Setting up Franka Emika Panda & Workstation
+- Using MoveIt with the RViz & Gazebo Implementation
+	- Introduction to MoveIt
+	- Running the Pick and Place demo in RViz
+	- Error when executing the RViz trajectory in Gazebo
+	- Debugging
+	- Exploring possible solutions / Giving up on MoveIt
+- IK Solver
+	- Picking the Brick
+	- 
 
 ## Clone the repository
 
