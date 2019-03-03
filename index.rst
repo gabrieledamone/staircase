@@ -1,5 +1,5 @@
 **********************************
-DE3-ROB1 CHESS Group Documentation
+DE3-ROB1 STAIRCASE Group Documentation
 **********************************
 
 About
