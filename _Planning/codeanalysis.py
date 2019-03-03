@@ -334,7 +334,9 @@ def pick_brick(publishers, grip_pos, grip_pub): # picks up brick placed at x=0.4
 
     rospy.loginfo("Lifting")
     joint_move_alt(publishers, [0.4, 0.5, 0.37], [0.4, 0.5, 0.5])
+
     # rospy.sleep(2) 
+
 
 def joint_move_alt_test(publishers):
     bh = 0.265

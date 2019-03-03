@@ -7,6 +7,7 @@ Description: maps for different staircases
 # in format location, destination
 
 one = [
+
 [[0,0,0],[0,0,0]],
 ]
 
@@ -54,4 +55,52 @@ five = [
 [[0,0,0],[0,0,0]],
 [[0,0,0],[0,0,0]],
 [[0,0,0],[0,0,0]],
+=======
+[[x,y,z],[x,y,z]],
+]
+
+two = [
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+]
+
+three = [
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+]
+
+four = [
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+]
+
+five = [
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
+[[x,y,z],[x,y,z]],
 ]
