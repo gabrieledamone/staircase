@@ -4,13 +4,7 @@
 Name: staircaseReal.py
 Last edited by/at: FAM 040319 1820
 Description: final staircase file where we pull everything together
-building a staircase from stations
-from right to left
-arranged in form of staircase levels
-low redundancy by less movement
-objective is to avoid up and down movements and stay as much same level as possible while working in stations
-have different level stations at different positions on the workspace
-have ready made arrays for brick stations dependent on height
+building a staircase cuz we love it
 """
 
 import rospy
@@ -29,40 +23,6 @@ global ef_pos
 global q1
 
 q1 = quaternion_from_euler(-3.141, 0, 2.35) # gripper facing downwards
-
-## Preparation
-
-height = int(input("Height of Staircase: ")) # ask for height of staircase
-print(height)
-print("Building staircase of height" + str(height)) # output for transparency
-# if height >= 5: print("Sorry our robot is lazy today") # lazy
-# heightAmount = {1: 1,2: 3,3: 6,4: 10,5: 15} # define amount of bricks necessary dependent on height
-# brickNums = heightAmount(height) # count amount of bricks necessary = length of location array]
-
-locationDestinationOptions = [map.one, map.two, map.three, map.four, map.five] # load options array of height station maps, order of bricks is order of pick up: right to left view from top
-
-# heightMap = [[],[],[],[]]
-
-locationDestinationMap = locationDestinationOptions[height-1] # read location/destination array from options array from height with locations in order of all bricks (according to logic) and where they need to go
-# run function which uses locationDestinationMap to place bricks in Gazebo
-station = [i[0] for i in locationDestinationMap] # define station array listing starting locations for bricks
-destination = [j[1] for j in locationDestinationMap] # define destination array for destination locations on where bricks need to go
-# define actual array reading actual locations of bricks for the robot to avoid obstacles
-
-while True: # while loop to place all functions
-    tracker = locationDestinationMap # tracker to exit while loop when all bricks are placed
-    counter = 0
-    for w in locationDestinationMap:
-        brickStation = station[counter] # station reading
-        brickDestination = destination[counter] # destination reading
-        pickPlace(arm_pubs, grip_pos, grip_pub,brickStation,brickDestination)
-        tracker.pop(0) # removing the brick we just worked with
-        counter += 1
-        if not tracker:
-            break
-    break
-
-pushing
 
 
 ## Data update
@@ -454,7 +414,32 @@ def staircase(publishers, grip_pos, grip_pub):
     for i in range(len(brick_start)):
         print("moving brick", i+1)
         pickPlace(publishers, grip_pos, grip_pub, brick_start[i], brick_end[i])
-        
+
+def push(publishers, grip_pos, grip_pub):
+    q1 = quaternion_from_euler(-1.57,-0.785, 0)
+    #print q1
+    initial = [-0.0027898559799117706, -0.4938102538628373, 0.011231754474766653, -2.4278711125230714, -0.014718553972133286, 1.889487912176289, -2.300243077342502]
+    for i in range(7):
+        publishers[i].publish(initial[i])
+    rospy.sleep(5)
+
+    step1 = ik_solver(0.4, 0.2, 0.1, q1[0], q1[1], q1[2], q1[3])
+    #step2 = ik_solver(0.4, 0.5, 0.2, q1[0], q1[1], q1[2], q1[3])
+
+    rospy.loginfo("Moving Gripper in position")
+    for i in range(7):
+        publishers[i].publish(step1[i])
+    rospy.sleep(2)
+
+    rospy.loginfo("Opening Gripper")
+    grip_move(grip_pos, grip_pub, 1, 1)
+    rospy.sleep(2)
+
+
+    rospy.loginfo("Pushing Action")
+   
+    joint_move_push(publishers, [0.4, 0.2, 0.1], [0.4, 0.5, 0.1])
+    rospy.sleep(2)
 
 
 if __name__ == '__main__':
@@ -487,4 +472,38 @@ if __name__ == '__main__':
     # pick_brick(arm_pubs, grip_pos, grip_pub)
     # joint_move_test(arm_pubs)
 
-    staircase(arm_pubs, grip_pos, grip_pub)
+
+    ### DOING IT
+
+    height = int(input("Height of Staircase: ")) # ask for height of staircase
+    print(height)
+    print("Building staircase of height" + str(height)) # output for transparency
+    # if height >= 5: print("Sorry our robot is lazy today") # lazy
+    # heightAmount = {1: 1,2: 3,3: 6,4: 10,5: 15} # define amount of bricks necessary dependent on height
+    # brickNums = heightAmount(height) # count amount of bricks necessary = length of location array]
+
+    locationDestinationOptions = [map.one, map.two, map.three, map.four, map.five] # load options array of height station maps, order of bricks is order of pick up: right to left view from top
+
+    # heightMap = [[],[],[],[]]
+
+    locationDestinationMap = locationDestinationOptions[height-1] # read location/destination array from options array from height with locations in order of all bricks (according to logic) and where they need to go
+    # run function which uses locationDestinationMap to place bricks in Gazebo
+    station = [i[0] for i in locationDestinationMap] # define station array listing starting locations for bricks
+    destination = [j[1] for j in locationDestinationMap] # define destination array for destination locations on where bricks need to go
+    # define actual array reading actual locations of bricks for the robot to avoid obstacles
+
+    while True: # while loop to place all functions
+        tracker = locationDestinationMap # tracker to exit while loop when all bricks are placed
+        counter = 0
+        for w in locationDestinationMap:
+            brickStation = station[counter] # station reading
+            brickDestination = destination[counter] # destination reading
+            pickPlace(arm_pubs, grip_pos, grip_pub,brickStation,brickDestination)
+            tracker.pop(0) # removing the brick we just worked with
+            counter += 1
+            if not tracker:
+                break
+        break
+
+    push(publishers, grip_pos, grip_pub) # pushing things into a real staircase
+    # staircase(arm_pubs, grip_pos, grip_pub)
