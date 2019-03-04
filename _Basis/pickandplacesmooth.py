@@ -440,13 +440,13 @@ def grip_move(grip_pos, grip_pub, f1, f2):
     grip_pub.publish(grip_pos)
     return
 
-def staircase_1(publishers, grip_pos, grip_pub):
-    global ef_pos
+def staircase_1(publishers, grip_pos, grip_pub): # pick and place
+    global ef_pos # 
     q1 = quaternion_from_euler(-3.141, 0, 2.35) # gripper facing downwards
     pbh = 0.243 # pick brick height
     bd = 0.065 # brick depth
-    brick_start = [[0.51, -0.4, pbh+bd], [0.5, -0.4, pbh], [0.5, 0.4, pbh]]
-    brick_end = [[0.5, -0.2, pbh], [0.5, 0.0, pbh], [0.5, 0.0, pbh+bd]]
+    brick_start = [[0.51, -0.4, pbh+bd], [0.5, -0.4, pbh], [0.5, 0.4, pbh]] #
+    brick_end = [[0.5, -0.2, pbh], [0.5, 0.0, pbh], [0.5, 0.0, pbh+bd]] #
 
     grip_move(grip_pos, grip_pub, 1, 1)
     initial = [0.5, 0.0, 0.5]
@@ -690,10 +690,10 @@ if __name__ == '__main__':
     rate = rospy.Rate(10)
 
     # Debug
-    #franka_test(start, arm_pubs, initial, grip_pos, grip_pub)
-    #sequence(arm_pubs)
+    # franka_test(start, arm_pubs, initial, grip_pos, grip_pub)
+    # sequence(arm_pubs)
     pick_brick(arm_pubs, grip_pos, grip_pub)
-    #joint_move_test(arm_pubs)
-    #joint_move_alt_test(arm_pubs)
+    # joint_move_test(arm_pubs)
+    # joint_move_alt_test(arm_pubs)
 
-    #staircase_1(arm_pubs, grip_pos, grip_pub)
+    # staircase_1(arm_pubs, grip_pos, grip_pub)
