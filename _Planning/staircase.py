@@ -15,10 +15,12 @@ import map as map
 
 ## preparation
 
-height = input("Height of Staircase: ") # ask for height of staircase
+height = int(input("Height of Staircase: ")) # ask for height of staircase
+print(height)
 print("Building staircase of height" + str(height)) # output for transparency
+# if height >= 5: print("Sorry our robot is lazy today") # lazy
 # heightAmount = {1: 1,2: 3,3: 6,4: 10,5: 15} # define amount of bricks necessary dependent on height
-brickNums = heightAmount(height) # count amount of bricks necessary = length of location array]
+# brickNums = heightAmount(height) # count amount of bricks necessary = length of location array]
 
 locationDestinationOptions = [map.one, map.two, map.three, map.four, map.five] # load options array of height station maps, order of bricks is order of pick up: right to left view from top
 
@@ -33,8 +35,8 @@ destination = [j[1] for j in locationDestinationMap] # define destination array 
 while True: # while loop to place all functions
 	tracker = locationDestinationMap # tracker to exit while loop when all bricks are placed
 	for k in locationDestinationMap:
-		brickStation = station[k] # station reading
-		brickDestination = destination[k] # destination reading
+		brickStation = station[k:0] # station reading
+		brickDestination = destination[k:1] # destination reading
 		pickPlace(arm_pubs, grip_pos, grip_pub,brickStation,brickDestination)
 		tracker.pop(0) # removing the brick we just worked with
 		if not tracker:
@@ -44,7 +46,7 @@ while True: # while loop to place all functions
 # pushing functions
 
 ## pick + place function
-def pickPlace(publishers, grip_pos, grip_pub, brickStation, brickDestination):
+# def pickPlace(publishers, grip_pos, grip_pub, brickStation, brickDestination):
 
 	# pick brick from there function (IK blabla)
 	# place brick to destination

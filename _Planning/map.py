@@ -6,6 +6,7 @@ Description: maps for different staircases
 
 # in format location, destination
 # need to discuss real or simulation
+# we have 4 piles of bricks of height 4 to build to the maximum a 5 by 5 staircase
 
 one = [
 [[0,0,0],[0,0,0]],
