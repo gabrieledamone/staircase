@@ -25,6 +25,7 @@ locationDestinationOptions = [map.one, map.two, map.three, map.four, map.five] #
 # heightMap = [[],[],[],[]]
 
 locationDestinationMap = locationDestinationOptions[height-1] # read location/destination array from options array from height with locations in order of all bricks (according to logic) and where they need to go
+# run function which uses locationDestinationMap to place bricks in Gazebo
 station = [i[0] for i in locationDestinationMap] # define station array listing starting locations for bricks
 destination = [j[1] for j in locationDestinationMap] # define destination array for destination locations on where bricks need to go
 # define actual array reading actual locations of bricks for the robot to avoid obstacles
@@ -39,6 +40,8 @@ while True: # while loop to place all functions
 		if not tracker:
 			break
 	break
+
+# pushing functions
 
 ## pick + place function
 def pickPlace(publishers, grip_pos, grip_pub, brickStation, brickDestination):
