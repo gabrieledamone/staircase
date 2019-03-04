@@ -1,6 +1,17 @@
 !/usr/bin/env python
 """
+Name: staircaseReal.py
+Last edited by/at: FAM 040319 1820
+Description: final staircase file where we pull everything together
+building a staircase from stations
+from right to left
+arranged in form of staircase levels
+low redundancy by less movement
+objective is to avoid up and down movements and stay as much same level as possible while working in stations
+have different level stations at different positions on the workspace
+have ready made arrays for brick stations dependent on height
 """
+
 import rospy
 import math
 import numpy as np
@@ -17,17 +28,17 @@ global q1
 
 q1 = quaternion_from_euler(-3.141, 0, 2.35) # gripper facing downwards
 
-# Data update
+## Data update
 def callback(data): # retrieves the joint angle positions from the rostopic subscriber
     global position
     position = data.position
-    #print position
+    # print position
 
 def ef_pos_get(data): # retrieves the end_effector position from the rostopic subscriber
     global ef_pos
     ef_pos = data.pose[8].position
 
-# Debug Functions
+## Debug functions
 def franka_test(start, publishers, initial, grip_pos, grip_pub): # example joint publisher to test the franka movement is working
     rospy.loginfo("Testing Franka Movement")
     while not rospy.is_shutdown():
@@ -36,12 +47,12 @@ def franka_test(start, publishers, initial, grip_pos, grip_pub): # example joint
 
         for i in range(7):
             publishers[i].publish(initial[i] + delta_angle)
-            #print initial[i]+delta_angle
+            # print initial[i]+delta_angle
 
         grip_move(grip_pos,grip_pub, delta_angle*10, delta_angle*10)
         print delta_angle*10
-        #grip_pos.data = [delta_angle*10, delta_angle*10]
-        #grip_pub.publish(grip_pos)
+        # grip_pos.data = [delta_angle*10, delta_angle*10]
+        # grip_pub.publish(grip_pos)
 
         rate.sleep()
 
@@ -71,7 +82,7 @@ def joint_move_test(publishers): # testing the joint_move function
 def pick_brick(publishers, grip_pos, grip_pub): # picks up bring placed at x=0.4, y=0, z=0, roll, pitch, yaw=0
     q1 = quaternion_from_euler(-3.14, 0.0, 2.3) # gripper facing downwards
 
-    #print q1
+    # print q1
     initial = [-0.0027898559799117706, -0.4938102538628373, 0.011231754474766653, -2.4278711125230714, -0.014718553972133286, 1.889487912176289, -2.300243077342502]
     for i in range(7):
         publishers[i].publish(initial[i])
@@ -102,23 +113,23 @@ def pick_brick(publishers, grip_pos, grip_pub): # picks up bring placed at x=0.4
     for i in range(7):
         publishers[i].publish(step1[i])
 
-#Solvers
+## Solvers
 def round_down(n, decimals=0):
     multiplier = 10 ** decimals
     return math.floor(n * multiplier) / multiplier
 
 def ik_solver(X, Y, Z, QX, QY, QZ, QW): # trac_ik inverse kinematics solver
     urdf_str = rospy.get_param('/robot_description')
-    #print urdf_str
+    # print urdf_str
     ik_sol = IK("panda_link0","panda_link7",urdf_string=urdf_str)
-    #print ik_sol.link_names
+    # print ik_sol.link_names
 
     global position
     seed_state = position[2:9]
 
     lower_bound, upper_bound = ik_sol.get_joint_limits()
-    #print upper_bound
-    #print lower_bound
+    # print upper_bound
+    # print lower_bound
     ik_sol.set_joint_limits(lower_bound, upper_bound)
 
     return ik_sol.get_ik(seed_state,
@@ -126,13 +137,13 @@ def ik_solver(X, Y, Z, QX, QY, QZ, QW): # trac_ik inverse kinematics solver
                 QX, QY, QZ, QW)  # QX, QY, QZ, QW
 
 def joint_move(publishers, end_pos): # movement smoothing
-    '''
-    input the joing publishers list and the end position in the form [x, y, z]
-    '''
+    
+    # input the joing publishers list and the end position in the form [x, y, z]
+    
     global ef_pos # end effector position from rostopic
     global position # joint angle positions from rostopic [2:9] fo joint positions
     global q1
-    #print end_pos
+    # print end_pos
 
     current_pos = [ef_pos.x, ef_pos.y, ef_pos.z]
     current_angles = np.array(position[2:9])
@@ -146,8 +157,7 @@ def joint_move(publishers, end_pos): # movement smoothing
     '''
 
     trajectory = apply_trapezoid_vel([current_pos, end_pos], acceleration=10, max_speed=1) # trapezium speed profile
-    #trajectory = linear_interpolation(current_pos, end_pos)
-
+    # trajectory = linear_interpolation(current_pos, end_pos)
 
     for i in range(len(trajectory)):
         for j in range(3):
@@ -162,7 +172,7 @@ def joint_move(publishers, end_pos): # movement smoothing
         if step is None:
             continue
 
-        #joint_interpolator(publishers, current_angles, step)
+        # joint_interpolator(publishers, current_angles, step)
         for i in range(7):
             publishers[i].publish(step[i])
 
@@ -433,10 +443,9 @@ if __name__ == '__main__':
         arm_pubs[i].publish(initial[i])
 
     # Debug
-    #franka_test(start, arm_pubs, initial, grip_pos, grip_pub)
-    #sequence(arm_pubs)
-    #pick_brick(arm_pubs, grip_pos, grip_pub)
-    #joint_move_test(arm_pubs)
+    # franka_test(start, arm_pubs, initial, grip_pos, grip_pub)
+    # sequence(arm_pubs)
+    # pick_brick(arm_pubs, grip_pos, grip_pub)
+    # joint_move_test(arm_pubs)
 
     staircase(arm_pubs, grip_pos, grip_pub)
-    
