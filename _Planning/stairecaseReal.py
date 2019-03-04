@@ -2,7 +2,7 @@
 
 """
 Name: staircaseReal.py
-Last edited by/at: FAM 040319 1820
+Last edited by/at: FAM 040319 1831
 Description: final staircase file where we pull everything together
 building a staircase cuz we love it
 """
@@ -11,6 +11,7 @@ import rospy
 import math
 import numpy as np
 import map as map
+import copy as copy
 from math import cos, sin, atan2, pi
 from std_msgs.msg import Float64MultiArray, MultiArrayDimension, Float64
 from sensor_msgs.msg import JointState
@@ -493,15 +494,15 @@ if __name__ == '__main__':
     # define actual array reading actual locations of bricks for the robot to avoid obstacles
 
     while True: # while loop to place all functions
-        tracker = locationDestinationMap # tracker to exit while loop when all bricks are placed
-        counter = 0
-        for w in locationDestinationMap:
+        tracker = copy.deepcopy(locationDestinationMap) # tracker to exit while loop when all bricks are placed
+        counter = 0 # initialise counter
+        for k in locationDestinationMap:
             brickStation = station[counter] # station reading
             brickDestination = destination[counter] # destination reading
-            pickPlace(arm_pubs, grip_pos, grip_pub,brickStation,brickDestination)
+            pickPlace(arm_pubs, grip_pos, grip_pub, brickStation, brickDestination)
             tracker.pop(0) # removing the brick we just worked with
-            counter += 1
-            if not tracker:
+            counter += 1 # keep counting
+            if not tracker: # exit once done
                 break
         break
 

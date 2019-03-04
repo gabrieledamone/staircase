@@ -10,6 +10,7 @@ have different level stations at different positions on the workspace
 have ready made arrays for brick stations dependent on height
 '''
 import map as map
+import copy as copy
 
 ### building a staircase from ... (wait for it) staircase height stations!
 
@@ -33,13 +34,21 @@ destination = [j[1] for j in locationDestinationMap] # define destination array 
 # define actual array reading actual locations of bricks for the robot to avoid obstacles
 
 while True: # while loop to place all functions
-	tracker = locationDestinationMap # tracker to exit while loop when all bricks are placed
+	tracker = copy.deepcopy(locationDestinationMap) # tracker to exit while loop when all bricks are placed
 	counter = 0
+	print(locationDestinationMap)
+	print("+++")
 	for w in locationDestinationMap:
+		print(w)
+		print(counter)
 		brickStation = station[counter] # station reading
+		print(brickStation)
 		brickDestination = destination[counter] # destination reading
+		print(brickDestination)
 		# pickPlace(arm_pubs, grip_pos, grip_pub,brickStation,brickDestination)
 		tracker.pop(0) # removing the brick we just worked with
+		print(tracker)
+		print("---")
 		counter += 1
 		if not tracker:
 			break
