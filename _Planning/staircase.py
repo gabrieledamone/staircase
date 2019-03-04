@@ -40,7 +40,7 @@ while True: # while loop to place all functions
 			break
 	break
 
-
+# bill is funny
 ## pick + place function
 def pickPlace(publishers, grip_pos, grip_pub, brickStation, brickDestination):
 
