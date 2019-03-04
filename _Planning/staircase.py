@@ -1,6 +1,6 @@
 '''
 Name: staircase.py
-Last edited by/on: FAM 03/03/19 19:10
+Last edited by/on: FAM 04/03/19 12:10
 Description: building a staircase from stations
 from right to left
 arranged in form of staircase levels
@@ -48,42 +48,6 @@ def pickPlace(publishers, grip_pos, grip_pub, brickStation, brickDestination):
 	# place brick to destination
 	# pushing
 	# error catching
-=======
-height = raw_input("Height of Staircase: ") # ask for height of staircase
-print("Building staircase of height" + str(height)) # output for transparency
-heightAmount = { # define amount of bricks necessary dependent on height
-	1: 1,
-	2: 3,
-	3: 6,
-	4: 10,
-	5: 15,
-}
-brickNums = heightAmount(height) # count amount of bricks necessary = length of location array]
-
-
-locationDestinationOptions = [map.one, map.two, map.three, map.four, map.five] # load options array of height station maps, order of bricks is order of pick up: right to left view from top
-
-heightMap = [
-[],
-[],
-[],
-[],
-]
-
-
-locationDestinationMap = locationDestinationOptions[height-1] # read location/destination array from options array from height with locations in order of all bricks (according to logic) and where they need to go
-actual = # define actual array reading actual locations of bricks for the robot to avoid obstacles
-station = # define station array listing starting locations for bricks
-destination = # define destination array for destination locations on where bricks need to go
-
-## pick + place function
-# read location of brick # in location/destination array
-# pick brick from there function (IK blabla)
-# place brick to destination
-# pushing
-# error catching
-# if placed correctly fix destination array
-# next
 
 ## destination function
 # if all bricks are at destination
