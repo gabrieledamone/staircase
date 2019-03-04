@@ -34,11 +34,13 @@ destination = [j[1] for j in locationDestinationMap] # define destination array 
 
 while True: # while loop to place all functions
 	tracker = locationDestinationMap # tracker to exit while loop when all bricks are placed
-	for k in locationDestinationMap:
-		brickStation = station[k:0] # station reading
-		brickDestination = destination[k:1] # destination reading
-		pickPlace(arm_pubs, grip_pos, grip_pub,brickStation,brickDestination)
+	counter = 0
+	for w in locationDestinationMap:
+		brickStation = station[counter] # station reading
+		brickDestination = destination[counter] # destination reading
+		# pickPlace(arm_pubs, grip_pos, grip_pub,brickStation,brickDestination)
 		tracker.pop(0) # removing the brick we just worked with
+		counter += 1
 		if not tracker:
 			break
 	break
