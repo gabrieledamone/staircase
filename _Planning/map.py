@@ -5,9 +5,9 @@ Description: maps for different staircases
 '''
 
 # in format location, destination
+# need to discuss real or simulation
 
 one = [
-
 [[0,0,0],[0,0,0]],
 ]
 

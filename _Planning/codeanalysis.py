@@ -117,6 +117,7 @@ def pick_brick(publishers, grip_pos, grip_pub): # picks up brick placed at x=0.4
        # rospy.sleep(2 / inter)
     #rospy.sleep(2)
 
+    ## changing z element because of gravity
     rospy.loginfo("Lowering Gripper")
     #for i in range(7):
         #publishers[i].publish(step2[i])
