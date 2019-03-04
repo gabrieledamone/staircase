@@ -1,4 +1,5 @@
 !/usr/bin/env python
+
 """
 Name: staircaseReal.py
 Last edited by/at: FAM 040319 1820
@@ -15,6 +16,7 @@ have ready made arrays for brick stations dependent on height
 import rospy
 import math
 import numpy as np
+import map as map
 from math import cos, sin, atan2, pi
 from std_msgs.msg import Float64MultiArray, MultiArrayDimension, Float64
 from sensor_msgs.msg import JointState
@@ -28,6 +30,41 @@ global q1
 
 q1 = quaternion_from_euler(-3.141, 0, 2.35) # gripper facing downwards
 
+## Preparation
+
+height = int(input("Height of Staircase: ")) # ask for height of staircase
+print(height)
+print("Building staircase of height" + str(height)) # output for transparency
+# if height >= 5: print("Sorry our robot is lazy today") # lazy
+# heightAmount = {1: 1,2: 3,3: 6,4: 10,5: 15} # define amount of bricks necessary dependent on height
+# brickNums = heightAmount(height) # count amount of bricks necessary = length of location array]
+
+locationDestinationOptions = [map.one, map.two, map.three, map.four, map.five] # load options array of height station maps, order of bricks is order of pick up: right to left view from top
+
+# heightMap = [[],[],[],[]]
+
+locationDestinationMap = locationDestinationOptions[height-1] # read location/destination array from options array from height with locations in order of all bricks (according to logic) and where they need to go
+# run function which uses locationDestinationMap to place bricks in Gazebo
+station = [i[0] for i in locationDestinationMap] # define station array listing starting locations for bricks
+destination = [j[1] for j in locationDestinationMap] # define destination array for destination locations on where bricks need to go
+# define actual array reading actual locations of bricks for the robot to avoid obstacles
+
+while True: # while loop to place all functions
+    tracker = locationDestinationMap # tracker to exit while loop when all bricks are placed
+    counter = 0
+    for w in locationDestinationMap:
+        brickStation = station[counter] # station reading
+        brickDestination = destination[counter] # destination reading
+        pickPlace(arm_pubs, grip_pos, grip_pub,brickStation,brickDestination)
+        tracker.pop(0) # removing the brick we just worked with
+        counter += 1
+        if not tracker:
+            break
+    break
+
+pushing
+
+
 ## Data update
 def callback(data): # retrieves the joint angle positions from the rostopic subscriber
     global position
@@ -37,6 +74,7 @@ def callback(data): # retrieves the joint angle positions from the rostopic subs
 def ef_pos_get(data): # retrieves the end_effector position from the rostopic subscriber
     global ef_pos
     ef_pos = data.pose[8].position
+
 
 ## Debug functions
 def franka_test(start, publishers, initial, grip_pos, grip_pub): # example joint publisher to test the franka movement is working
@@ -112,6 +150,7 @@ def pick_brick(publishers, grip_pos, grip_pub): # picks up bring placed at x=0.4
     rospy.loginfo("Lifting Brick")
     for i in range(7):
         publishers[i].publish(step1[i])
+
 
 ## Solvers
 def round_down(n, decimals=0):
@@ -306,8 +345,6 @@ def apply_trapezoid_vel(path, acceleration=1, max_speed=1):
                 smooth_path_idx = len(smooth_path) - 1
             new_marker = np.hstack((smooth_path[smooth_path_idx], speed_values[i]))
             trajectory = np.vstack((trajectory, new_marker))
-
-
         return trajectory
 
 def length_of_path(path):
@@ -375,7 +412,8 @@ def discretise_path( move, dx):
                 move_discrete = current_segment
         return move_discrete
 
-# Movements
+
+## Movements
 def grip_move(grip_pos, grip_pub, f1, f2):
     grip_pos.data = [f1, f2]
     grip_pub.publish(grip_pos)
@@ -417,6 +455,7 @@ def staircase(publishers, grip_pos, grip_pub):
         print("moving brick", i+1)
         pickPlace(publishers, grip_pos, grip_pub, brick_start[i], brick_end[i])
         
+
 
 if __name__ == '__main__':
     global position

@@ -1,6 +1,6 @@
 '''
 Name: staircase.py
-Last edited by/on: FAM 04/03/19 12:10
+Last edited by/on: FAM 04/03/19 18:00
 Description: building a staircase from stations
 from right to left
 arranged in form of staircase levels
@@ -13,7 +13,7 @@ import map as map
 
 ### building a staircase from ... (wait for it) staircase height stations!
 
-## preparation
+## Preparation
 
 height = int(input("Height of Staircase: ")) # ask for height of staircase
 print(height)
