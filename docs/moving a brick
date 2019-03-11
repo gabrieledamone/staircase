@@ -1,0 +1,24 @@
+
+
+def pickPlace(publishers, grip_pos, grip_pub, brick_start, brick_end): # picks up brick and places it at the end position. Function ends with end_effecttor above end position
+    raise_height = 0.8 # the height that the end effector will lift bricks to when moving
+    sleep_time = 2 # amount of seconds between movements
+    pbh = 0.243 # the height above the brick that the end effector must be to lift it
+
+    joint_move(publishers, [brick_start[0], brick_start[1], raise_height]) # moving gripper above brick start
+    rospy.sleep(sleep_time)
+    grip_move(grip_pos, grip_pub, 1, 1) # opening grippers
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_start[0], brick_start[1], brick_start[2]+pbh]) # moving to pick brick height
+    rospy.sleep(sleep_time)
+    grip_move(grip_pos, grip_pub, -1, -1) # closing grippers
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_start[0], brick_start[1], raise_height]) # moving to brick raise height
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_end[0], brick_end[1], raise_height]) # moving to above brick destination
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_end[0], brick_end[1], brick_end[2]+pbh]) # moving to brick end position
+    rospy.sleep(sleep_time)
+    grip_move(grip_pos, grip_pub, 1, 1) # opening grippers
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_end[0], brick_end[1], raise_height]) # moving back up in preparation for next brick
