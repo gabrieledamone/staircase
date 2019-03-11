@@ -97,6 +97,17 @@ Contents
    :caption: Project Development
 
    project specifications
+   IK Solver
+   Motion Planning
+   Making the robot Fully autonomous
+   Robustness
+   Error Detection
+   Ambition
+   Outstanding Features
+   Speed
+   Redundancy Resolution
+   Design of initial Workspace
+   
 
 .. toctree::
    :maxdepth: 2
