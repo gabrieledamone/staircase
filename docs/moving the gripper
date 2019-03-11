@@ -1,4 +1,0 @@
-def grip_move(grip_pos, grip_pub, f1, f2):
-    grip_pos.data = [f1, f2]
-    grip_pub.publish(grip_pos)
-    return
