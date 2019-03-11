@@ -92,6 +92,31 @@ Contents
    workstation
    operating
    
+.. toctree::
+   :maxdepth: 2
+   :caption: Project Development
+
+   camera
+   calibration
+   perception
+   chess-engine
+   motion
+   controller
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Project Management
+
+   project-proposal
+   project-plan
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Appendix
+
+   resources
+   ground-rules
+   
    Indices and tables
 ==================
 
