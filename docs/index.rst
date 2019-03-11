@@ -85,7 +85,7 @@ Contents
 ========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Working with FRANKA Emika
 
    franka
