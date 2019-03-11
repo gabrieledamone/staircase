@@ -418,14 +418,14 @@ def staircase(publishers, grip_pos, grip_pub):
 
 def push(publishers, grip_pos, grip_pub):
     q1 = quaternion_from_euler(-1.57,-0.785, 0)
-    #print q1
+    # print q1
     initial = [-0.0027898559799117706, -0.4938102538628373, 0.011231754474766653, -2.4278711125230714, -0.014718553972133286, 1.889487912176289, -2.300243077342502]
     for i in range(7):
         publishers[i].publish(initial[i])
     rospy.sleep(5)
 
     step1 = ik_solver(0.4, 0.2, 0.1, q1[0], q1[1], q1[2], q1[3])
-    #step2 = ik_solver(0.4, 0.5, 0.2, q1[0], q1[1], q1[2], q1[3])
+    # step2 = ik_solver(0.4, 0.5, 0.2, q1[0], q1[1], q1[2], q1[3])
 
     rospy.loginfo("Moving Gripper in position")
     for i in range(7):
@@ -477,8 +477,8 @@ if __name__ == '__main__':
     ### DOING IT
 
     height = int(input("Height of Staircase: ")) # ask for height of staircase
-    print(height)
-    print("Building staircase of height" + str(height)) # output for transparency
+    # print(height)
+    print("Building staircase of height " + str(height)) # output for transparency
     # if height >= 5: print("Sorry our robot is lazy today") # lazy
     # heightAmount = {1: 1,2: 3,3: 6,4: 10,5: 15} # define amount of bricks necessary dependent on height
     # brickNums = heightAmount(height) # count amount of bricks necessary = length of location array]
