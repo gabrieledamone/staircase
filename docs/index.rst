@@ -96,7 +96,7 @@ Contents
    :maxdepth: 2
    :caption: Project Development
 
-   camera
+   project specifications
    calibration
    perception
    chess-engine
