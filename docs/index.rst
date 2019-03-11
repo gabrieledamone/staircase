@@ -97,11 +97,6 @@ Contents
    :caption: Project Development
 
    project specifications
-   calibration
-   perception
-   chess-engine
-   motion
-   controller
 
 .. toctree::
    :maxdepth: 2
