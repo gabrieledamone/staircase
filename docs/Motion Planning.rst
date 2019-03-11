@@ -11,7 +11,7 @@ https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6165411/
 Whilst linear interpolation 
 
 https://en.wikipedia.org/wiki/Savitzky–Golay_filter
-
+Smoothing the discretised joint angle positions with a Savitzky-Golay filter can remove the high frequency noise from the signal by fitting sections of the curve to the closest polynomial.
 
 Linear Interpolation
 ===========
