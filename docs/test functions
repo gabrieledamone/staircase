@@ -6,7 +6,7 @@ The "sequence" function tests efficacy of the inverse kinematics solver. The fun
 
 The "joint_move_test" function test the trajcotry planning function. It is essentially the same as the "sequence" function except with a slower, smoother movement. A comparison of this and the "sequence" function is very helpful in demonstrating the efficacy of the trajectory planning.
 
-The "pick_brick" function tests the robot arm picking up a single brick. As well as testing the for all the aforementioned functions, this funciton crucially also tests the Gazebo simulation physics and interactions between the brick and the grippers.
+The "pick_brick" function tests the robot arm picking up a single brick. As well as testing the for all the aforementioned functions, this funciton crucially also tests the Gazebo simulation physics and interactions between the brick and the grippers. The "pick_brick" function also was used to find the correct Cartesian end-effector orientation to be converted to a quaternion to input into the IK solver. This function was also used in order to determine issues with the physics of the simualtion, such as the grippers being too small for the brick in the initial orientation.
 
 
 
