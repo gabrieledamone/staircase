@@ -96,7 +96,7 @@ Contents
    :maxdepth: 2
    :caption: Project Development
 
-   project specifications
+   Project Specifications
    IK Solver
    Motion Planning
    Making the robot Fully autonomous
