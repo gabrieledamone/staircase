@@ -1,0 +1,42 @@
+
+
+## Debug functions
+def franka_test(start, publishers, initial, grip_pos, grip_pub): # example joint publisher to test the franka movement is working
+    rospy.loginfo("Testing Franka Movement")
+    while not rospy.is_shutdown():
+        elapsed = rospy.Time.now() - start
+        delta_angle = math.pi / 16 * (math.cos(math.pi / 5 * elapsed.to_sec()))
+
+        for i in range(7):
+            publishers[i].publish(initial[i] + delta_angle)
+            # print initial[i]+delta_angle
+
+        grip_move(grip_pos,grip_pub, delta_angle*10, delta_angle*10)
+        print delta_angle*10
+        # grip_pos.data = [delta_angle*10, delta_angle*10]
+        # grip_pub.publish(grip_pos)
+
+        rate.sleep()
+
+def sequence(publishers): # testing a sequence of positions to determine if the ik_solver function is giving the correct output
+    rospy.loginfo("Testing ik solver")
+
+    # positions in sequence
+    pos1 = ik_solver(0.2, 0.1, 0.8, 0.0, 0.0, 0.0, 1.0)
+    pos2 = ik_solver(0.3, 0.1, 0.8, 0.0, 0.0, 0.0, 1.0)
+    pos3 = ik_solver(0.4, 0.1, 0.8, 0.0, 0.0, 0.0, 1.0)
+    pos4 = ik_solver(0.5, 0.1, 0.8, 0.0, 0.0, 0.0, 1.0)
+
+    print pos1, pos2, pos3, pos4
+
+    routine = [pos1, pos2, pos3, pos4]
+    for j in range (len(routine)):
+        for i in range(7):
+            publishers[i].publish(routine[j][i])
+        rospy.sleep(5)
+
+def joint_move_test(publishers): # testing the joint_move function
+    print("Testing Joint Move Function")
+    joint_move(publishers, [0.5, 0, 0.8])
+    rospy.sleep(5)
+    joint_move(publishers, [0.5, 0, 0.3])
