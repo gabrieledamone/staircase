@@ -91,3 +91,10 @@ Contents
    franka
    workstation
    operating
+   
+   Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
