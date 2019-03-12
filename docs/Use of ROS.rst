@@ -8,29 +8,3 @@ From implementing this it is important to note the specific data type, i.e. Join
 
 The topic in themselves often contain more information than required. For example, gazebo/link_states includes the states of all the links of the robot in gazebo, and so to get just the end_effector position, the pose attribute has to be indexed.
 
-## Data update
-def callback(data): # retrieves the joint angle positions from the rostopic subscriber
-    global position
-    position = data.position
-    # print position
-
-def ef_pos_get(data): # retrieves the end_effector position from the rostopic subscriber
-    global ef_pos
-    ef_pos = data.pose[8].position
-    
-'''
-
-'''
-
-rospy.init_node('sc_pub')
-
-    # Arm Initialise
-    arm_pubs = [rospy.Publisher('/franka/joint{}_position_controller/command'.format(i), Float64, queue_size=1) for i in range(1, 8)]
-    arm_pos = rospy.Subscriber("/joint_states", JointState, callback, queue_size=1)
-    ef_pos = rospy.Subscriber("/gazebo/link_states", LinkStates, ef_pos_get, queue_size=10)
-
-    # Gripper Initialise
-    grip_pub = rospy.Publisher('/franka/gripper_position_controller/command', Float64MultiArray, queue_size=1)
-    #gripper_width = rospy.Subscriber("/franka/gripper_width", Float64, callback, queue_size=1)
-    grip_pos = Float64MultiArray()
-    grip_pos.layout.dim = [MultiArrayDimension('', 2, 1)]
