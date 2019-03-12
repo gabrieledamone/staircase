@@ -37,8 +37,8 @@ def ef_pos_get(data): # retrieves the end_effector position from the rostopic su
     ef_pos = data.pose[8].position
 
 
-## Debug functions
-def franka_test(start, publishers, initial, grip_pos, grip_pub): # example joint publisher to test the franka movement is working
+## Debug functions 
+def franka_test(start, publishers, initial, grip_pos, grip_pub): # example joint publisher to test the franka movement is working. See Source Code in documentation
     rospy.loginfo("Testing Franka Movement")
     while not rospy.is_shutdown():
         elapsed = rospy.Time.now() - start
@@ -55,7 +55,7 @@ def franka_test(start, publishers, initial, grip_pos, grip_pub): # example joint
 
         rate.sleep()
 
-def sequence(publishers): # testing a sequence of positions to determine if the ik_solver function is giving the correct output
+def sequence(publishers): # testing a sequence of positions to determine if the ik_solver function is giving the correct output. See Source Code in documentation
     rospy.loginfo("Testing ik solver")
 
     # positions in sequence
@@ -72,7 +72,7 @@ def sequence(publishers): # testing a sequence of positions to determine if the 
             publishers[i].publish(routine[j][i])
         rospy.sleep(5)
 
-def joint_move_test(publishers): # testing the joint_move function
+def joint_move_test(publishers): # testing the joint_move function. See Source Code in documentation
     print("Testing Joint Move Function")
     joint_move(publishers, [0.5, 0, 0.8])
     rospy.sleep(5)
@@ -118,7 +118,7 @@ def round_down(n, decimals=0):
     multiplier = 10 ** decimals
     return math.floor(n * multiplier) / multiplier
 
-def ik_solver(X, Y, Z, QX, QY, QZ, QW): # trac_ik inverse kinematics solver
+def ik_solver(X, Y, Z, QX, QY, QZ, QW): # trac_ik inverse kinematics solver. See IK Solver in documentation
     urdf_str = rospy.get_param('/robot_description')
     # print urdf_str
     ik_sol = IK("panda_link0","panda_link7",urdf_string=urdf_str)
@@ -136,7 +136,7 @@ def ik_solver(X, Y, Z, QX, QY, QZ, QW): # trac_ik inverse kinematics solver
                 X, Y, Z,  # X, Y, Z
                 QX, QY, QZ, QW)  # QX, QY, QZ, QW
 
-def joint_move(publishers, end_pos): # movement smoothing
+def joint_move(publishers, end_pos): # movement smoothing. See Source Code in documentation
     
     # input the joing publishers list and the end position in the form [x, y, z]
     
@@ -176,7 +176,7 @@ def joint_move(publishers, end_pos): # movement smoothing
         for i in range(7):
             publishers[i].publish(step[i])
 
-def joint_interpolator(publishers, current_angles, end_angles):
+def joint_interpolator(publishers, current_angles, end_angles): # See Motion Planning in documentation
     inter = 100
     steps = []
     for i in range(7):
@@ -185,7 +185,7 @@ def joint_interpolator(publishers, current_angles, end_angles):
         for i in range(7):
             publishers[i].publish(round(steps[i][j],3))
 
-def linear_interpolation(start_pos, end_pos):
+def linear_interpolation(start_pos, end_pos): # See Motion Planning in documentation
     inter = 100
     steps = []
     for i in range(3):
