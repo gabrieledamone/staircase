@@ -136,7 +136,7 @@ def ik_solver(X, Y, Z, QX, QY, QZ, QW): # trac_ik inverse kinematics solver. See
                 X, Y, Z,  # X, Y, Z
                 QX, QY, QZ, QW)  # QX, QY, QZ, QW
 
-def joint_move(publishers, end_pos): # movement smoothing. See Source Code in documentation
+def joint_move(publishers, end_pos, motion_planner='trapezium'): # movement smoothing. See Source Code in documentation
     
     # input the joing publishers list and the end position in the form [x, y, z]
     
@@ -155,9 +155,11 @@ def joint_move(publishers, end_pos): # movement smoothing. See Source Code in do
     for i in range(7):
         publishers[i].publish(step[i])
     '''
-
-    trajectory = apply_trapezoid_vel([current_pos, end_pos], acceleration=10, max_speed=1) # trapezium speed profile
-    # trajectory = linear_interpolation(current_pos, end_pos)
+    
+    if motion_planner == 'trapezium':
+        trajectory = apply_trapezoid_vel([current_pos, end_pos], acceleration=10, max_speed=1) # trapezium speed profile
+    elif motion_planner == 'linear':
+        trajectory = linear_interpolation(current_pos, end_pos)
 
     for i in range(len(trajectory)):
         for j in range(3):
