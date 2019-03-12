@@ -26,7 +26,7 @@ global q1
 q1 = quaternion_from_euler(-3.141, 0, 2.35) # gripper facing downwards
 
 
-## Data update
+## Data update. See Use of ROS in the documentation.
 def callback(data): # retrieves the joint angle positions from the rostopic subscriber
     global position
     position = data.position
@@ -37,7 +37,7 @@ def ef_pos_get(data): # retrieves the end_effector position from the rostopic su
     ef_pos = data.pose[8].position
 
 
-## Debug functions 
+## Debug functions. See Key Functions in the documentation.
 def franka_test(start, publishers, initial, grip_pos, grip_pub): # example joint publisher to test the franka movement is working. See Source Code in documentation
     rospy.loginfo("Testing Franka Movement")
     while not rospy.is_shutdown():
@@ -375,12 +375,12 @@ def discretise_path( move, dx):
 
 
 ## Movements
-def grip_move(grip_pos, grip_pub, f1, f2):
+def grip_move(grip_pos, grip_pub, f1, f2): # See Key Functions in the documentation.
     grip_pos.data = [f1, f2]
     grip_pub.publish(grip_pos)
     return
 
-def pickPlace(publishers, grip_pos, grip_pub, brick_start, brick_end): # picks up brick and places it at the end position. Function ends with end_effecttor above end position
+def pickPlace(publishers, grip_pos, grip_pub, brick_start, brick_end): # picks up brick and places it at the end position. Function ends with end_effecttor above end position. See Key Functions in the documentation.
     raise_height = 0.8 # the height that the end effector will lift bricks to when moving
     sleep_time = 2 # amount of seconds between movements
     pbh = 0.243 # the height above the brick that the end effector must be to lift it
@@ -402,19 +402,6 @@ def pickPlace(publishers, grip_pos, grip_pub, brick_start, brick_end): # picks u
     grip_move(grip_pos, grip_pub, 1, 1) # opening grippers
     rospy.sleep(sleep_time)
     joint_move(publishers, [brick_end[0], brick_end[1], raise_height]) # moving back up in preparation for next brick
-
-def staircase(publishers, grip_pos, grip_pub):
-    global ef_pos
-    q1 = quaternion_from_euler(-3.141, 0, 2.35) # gripper facing downwards
-    bd = 0.065 # brick depth
-    brick_start = [[0.5, -0.4, bd], [0.5, -0.4, 0], [0.5, 0.4, 0]]
-    brick_end = [[0.5, -0.2, 0], [0.5, 0.0, 0], [0.5, 0.0, bd]]
-
-    grip_move(grip_pos, grip_pub, 1, 1)
-
-    for i in range(len(brick_start)):
-        print("moving brick", i+1)
-        pickPlace(publishers, grip_pos, grip_pub, brick_start[i], brick_end[i])
 
 def push(publishers, grip_pos, grip_pub):
     q1 = quaternion_from_euler(-1.57,-0.785, 0)
