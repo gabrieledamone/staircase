@@ -2,6 +2,8 @@ https://bitbucket.org/traclabs/trac_ik/src/HEAD/trac_ik_python/
 
 The inverse kinematics solver used was trac_ik. It has a python wrapper which was used in order to include it in our solution. The solver uses quaternions as the inputs for the end effector orientation and Cartesian coordinates for the position. 
 
+The trac_ik solver returns the first valid solution returned, however the timeout period and solver type (default: 1e-5s and Speed) can be configured. We found that the Distance solver type slightly increased the accuracy of the solver with regards to finding the joint angles that constituted the shortest path from start to goal.
+
 Initially, the function was not working as intended because our seed state was 0 rad for every joint and so the solver was returning the first solution as calculated from that arbitrary state. Subsequently, the function was changed such that it uses the current joint angles from the joint_states rostopic, written to the global variable "position".
 
 from trac_ik_python.trac_ik import IK
