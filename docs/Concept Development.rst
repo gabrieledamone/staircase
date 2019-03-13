@@ -9,6 +9,6 @@ Objectives
 #. Autonomy
 #. Error Detection
 
-.. figure:: pictures/ConceptDevelopment.PNG
+.. figure:: pictures/ConceptDevelopment.png
     :align: center
     :figclass: align-center
