@@ -101,6 +101,7 @@ Contents
    Motion Planning
    Fully Autonomous Robot
    Concept Development
+   Gazebo Limitations
    Robustness
    Error Detection
    Ambition
