@@ -69,11 +69,7 @@ Overall Structure
     push(publishers, grip_pos, grip_pub) # pushing things into a real staircase
     # staircase(arm_pubs, grip_pos, grip_pub)
 
-This while loop places all the bricks and runs the following 3 functions:
-
-* pickPlace
-* Push
-* ErrorCatching
+Let's now have a look at the functions called to build the staircase in the next section: ``pickPlace`` and ``push``.
    
 .. literalinclude:: ../_Planning/staircaseReal.py
    :lines: 485-496
