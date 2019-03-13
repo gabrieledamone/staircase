@@ -70,7 +70,9 @@ Overall Structure
     # staircase(arm_pubs, grip_pos, grip_pub)
 
 Let's now have a look at the functions called to build the staircase in the next section: ``pickPlace`` and ``push``.
-   
+
+Below the code again in all it's glory:
+
 .. literalinclude:: ../_Planning/staircaseReal.py
    :lines: 485-496
 
@@ -112,7 +114,7 @@ A number of debugging functions were used in order to test various aspects of th
 
 The ``franka_test`` function comes from the *example_joint_publisher.py* script provided to us. It tests that the franka panda robot and simulation are working as well as ros (the topics and publishers for the robot arm and gripper). This was the the most basic test for functionality and further development.
 
-The ``sequence`` function tests efficacy of the inverse kinematics solver. The function instructs the robot arm to move to a number (4) of positions to demonstrate that the inverse kinematic solver works irrespective of any trajectory planning. If the robot does not move through the positions but the ``franka_test`` fuction does work then the issue can be narrrowed to the inverse kinematics solver. The "sequence" function was hugely helpful in establishing that the inverse kinematics solver was sometimes returning unsatisfactory outputs (made the movement unstable and took long routes on occasion) and led to us realising that we were using an abritrary seed state (inital state) for the inverse kinematics as opposed to the current position.
+The ``sequence`` function tests efficacy of the inverse kinematics solver. The function instructs the robot arm to move to a number (4) of positions to demonstrate that the inverse kinematic solver works irrespective of any trajectory planning. If the robot does not move through the positions but the ``franka_test`` fuction does work then the issue can be narrrowed to the inverse kinematics solver. The ``sequence`` function was hugely helpful in establishing that the inverse kinematics solver was sometimes returning unsatisfactory outputs (made the movement unstable and took long routes on occasion) and led to us realising that we were using an abritrary seed state (inital state) for the inverse kinematics as opposed to the current position.
 
 The ``joint_move_test`` function test the trajcotry planning function. It is essentially the same as the ``sequence`` function except with a slower, smoother movement. A comparison of this and the ``sequence`` function is very helpful in demonstrating the efficacy of the trajectory planning.
 
