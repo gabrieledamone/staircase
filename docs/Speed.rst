@@ -19,11 +19,11 @@ To implement the Trapezium Velocity Profile, firstly we need to discretise the p
 There are two case that we considered while applying the profile. The first case is that the length of the path is long enough for the end-effector to reach the target speed. The middle sectiond is scaled along the time axis accordingly.
 
 Based on the two input parameters, the profile will be constructed
-    The end stage time is calculated: target_speed / acceleration
-    The end stage displacement is calculated: end_stage_time * target_speed / 2
-    The mid stage displacement is calculated: path_length - 2 * end_stage_displacement
-    The mid stage time is calculated: mid_stage_displacement / target_speed
-    The total time is calculated: end_stage_time * 2 + mid_stage_time
+    The end stage time is calculated:: target_speed / acceleration
+    The end stage displacement is calculated:: end_stage_time * target_speed / 2
+    The mid stage displacement is calculated:: path_length - 2 * end_stage_displacement
+    The mid stage time is calculated:: mid_stage_displacement / target_speed
+    The total time is calculated:: end_stage_time * 2 + mid_stage_time
 
 Then creating a time list using 0->Total time in steps of dt::
 
