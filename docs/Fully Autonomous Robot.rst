@@ -12,4 +12,4 @@ Requirements
     :align: center
     :figclass: align-center
 
-    Requirements to make robot fully autonomous
+    
