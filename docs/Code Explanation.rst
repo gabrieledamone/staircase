@@ -29,11 +29,48 @@ Overall Structure
 
 1. It all starts with the user that can key in the ``height`` that he wants the staircase to have.
 
+.. code-block::
+
+      height = int(input("Height of Staircase: ")) # ask for height of staircase
+    # print(height)
+    print("Building staircase of height " + str(height)) # output for transparency
+    # if height >= 5: print("Sorry our robot is lazy today") # lazy
+    # heightAmount = {1: 1,2: 3,3: 6,4: 10,5: 15} # define amount of bricks necessary dependent on height
+    # brickNums = heightAmount(height) # count amount of bricks necessary = length of location array]
+
 2. Then are loaded the relevant ``workspace maps`` for this specific ``height`` ie. the **initial** and **final** positions of the bricks.
 
-3. Finally a ``while loop`` is run which looks like this::
+.. code-block::
 
-      while loop
+   locationDestinationOptions = [map.one, map.two, map.three, map.four, map.five] # load options array of height station maps,      order of bricks is order of pick up: right to left view from top
+
+    # heightMap = [[],[],[],[]]
+
+    locationDestinationMap = locationDestinationOptions[height-1] # read location/destination array from options array from height with locations in order of all bricks (according to logic) and where they need to go
+    # run function which uses locationDestinationMap to place bricks in Gazebo
+    station = [i[0] for i in locationDestinationMap] # define station array listing starting locations for bricks
+    destination = [j[1] for j in locationDestinationMap] # define destination array for destination locations on where bricks need to go
+    # define actual array reading actual locations of bricks for the robot to avoid obstacles
+
+3. Finally a ``while loop`` is run which looks like this:
+
+.. code-block::
+
+    while True: # while loop to place all functions
+        tracker = copy.deepcopy(locationDestinationMap) # tracker to exit while loop when all bricks are placed
+        counter = 0 # initialise counter
+        for k in locationDestinationMap:
+            brickStation = station[counter] # station reading
+            brickDestination = destination[counter] # destination reading
+            pickPlace(arm_pubs, grip_pos, grip_pub, brickStation, brickDestination)
+            tracker.pop(0) # removing the brick we just worked with
+            counter += 1 # keep counting
+            if not tracker: # exit once done
+                break
+        break
+
+    push(publishers, grip_pos, grip_pub) # pushing things into a real staircase
+    # staircase(arm_pubs, grip_pos, grip_pub)
 
 This while loop places all the bricks and runs the following 3 functions:
 
@@ -51,7 +88,7 @@ This while loop places all the bricks and runs the following 3 functions:
    
    
 .. literalinclude:: ../_Planning/staircaseReal.py
-   :lines:
+   :lines: 485-496
 
 
 Key Functions
