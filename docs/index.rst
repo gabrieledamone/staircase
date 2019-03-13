@@ -103,8 +103,8 @@ Contents
    Concept Development
    Gazebo Limitations
    Code Explanation
+   Results
    Future Improvements
-   Conclusion
    Robustness
    Error Detection
    Ambition
