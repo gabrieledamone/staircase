@@ -1,5 +1,11 @@
-Trapezium Velocity Profile
+**********
+Trapezium Velocity Profile 
+**********
 
+.. figure:: pictures/trapezium.png
+    :align: center
+    :figclass: align-center
+    
 Imagine a vehicle running to its target. Instead of rushing and bump into the end point, the vehicle must accelerate and keep running at a constant speed, and before reaching the goal, it will start decelerating and get to the end safely. That is the general idea of Trapezium Velocity Profile which we applied to the motion of Franka robot.
 
 Trapezium Velocity Profile is widely used in the industry, and the profile is constructed with two main input parameters: 
