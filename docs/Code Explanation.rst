@@ -18,7 +18,7 @@ A second step is to push bricks accordingly at the end when the whole staircase 
 
 Autonomous staircase building
 ----
-Finally we need to construct a code structure that makes the robot autonomous: 
+Finally we need to construct a code structure that makes the robot autonomous
    * it can build different heights of staircases
    * has undergone a specific workplace planning and has knowledge on where bricks are
    * identifies issues and can react to them to a certain extent
