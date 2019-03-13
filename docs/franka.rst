@@ -7,7 +7,7 @@ Starting up
 
 The Arm should be connected to the workshop floor controller with the thick black cable and the controller box should be powered up. When booting, the arm LEDs will flash yellow. Once the arm is booted (solid yellow when completed) you can release the brakes via the web interface.
 
-.. figure:: _static/franka_wiring_guide_general.png
+.. figure:: pictures/franka_wiring_guide_general.png
     :align: center
     :figclass: align-center
 
