@@ -2,25 +2,24 @@
 Code Explanation
 ====
 
+Let's have a look at our final code: it's main objectives, structure and key functions within it.
+
 Objectives
 ====
 
-As discussed previously we have designed the functionnalites of the final code to be program by **individual groups** and then be put together at a later date.
+As discussed previously we have designed the functionalites of the final code to be programmed by **individual groups** and then be put together at a later date to produce the **result** we have today.
 The below features are *key* in our programming execution and what we understand as *milestones* in our work.
 
 #. Pick & Placing
-
-.. literalinclude:: stairecaseReal.py
-   :lines: 385-406
    
 #. Pushing
 
 #. Autonomous coding
 
-Overall Structure
+Structure
 ====
 
-:: #needs code image here
+: #needs code image here
 
 
 Key Functions
@@ -34,19 +33,19 @@ The core joint planning function used was the "joint_move" function. Inputting t
 
 Currently, the joint move function employs the inverse kinematics function and moves the robot arm a single step in each iteration of the task space trajectory. This meant that the robot arm was being moved without reference to the entire joint space trajectory. By performing the inverse kinematics on the entire list of task space steps and then performing trajectory smoothing (low pass filter, damping) before the joint angles are published, the shaking could be eliminated from the robot arm movement.
 
-:: # needs code here
+: # needs code here
 
 Moving a Brick
 ----
 Pickplace allows for a start position and end position to be input into the function and for all the necessary arm and gripper movements to be executed to move the brick from start to finish with uniaxial motion. The reason for uniaxial motion is so that there is much less chance of the interfering with obstacles as the end effector is lifted above the construction before any horizontal movement. Note that the horizontal movement can be duoaxial.
 
-:: # needs code here    
+: # needs code here    
     
 Moving the Gripper
 ----
 As opposed to using the gripper width topic in order to control the gripper fingers, the fingers were controlled indiviudally, incase that ever became necessary during the task.
 
-:: # needs code here
+: # needs code here
     
 Debug Functions
 ----
@@ -60,5 +59,4 @@ The "joint_move_test" function test the trajcotry planning function. It is essen
 
 The "pick_brick" function tests the robot arm picking up a single brick. As well as testing the for all the aforementioned functions, this funciton crucially also tests the Gazebo simulation physics and interactions between the brick and the grippers. The "pick_brick" function also was used to find the correct Cartesian end-effector orientation to be converted to a quaternion to input into the IK solver. This function was also used in order to determine issues.
 
-:: # needs code here
-
+: # needs code here
