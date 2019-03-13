@@ -24,3 +24,6 @@ Autonomy
     
 Error Detection
 ===================================
+.. figure:: pictures/error.png
+    :align: center
+    :figclass: align-center
