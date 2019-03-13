@@ -90,7 +90,47 @@ Currently, the ``joint_move`` function employs the inverse kinematics function a
 
 .. code-block::
    
-   needs code here
+   def joint_move(publishers, end_pos, motion_planner='trapezium'): # movement smoothing. See Source Code in documentation
+    
+    # input the joing publishers list and the end position in the form [x, y, z]
+
+    global ef_pos # end effector position from rostopic
+    global position # joint angle positions from rostopic [2:9] fo joint positions
+    global q1
+    # print end_pos
+
+    current_pos = [ef_pos.x, ef_pos.y, ef_pos.z]
+    current_angles = np.array(position[2:9])
+
+    # end effector position interpolation
+    '''
+    # No motion planning
+    step = ik_solver(end_pos[0], end_pos[1], end_pos[2], q1[0], q1[1], q1[2], q1[3])
+    for i in range(7):
+        publishers[i].publish(step[i])
+    '''
+
+    if motion_planner == 'trapezium':
+        trajectory = apply_trapezoid_vel([current_pos, end_pos], acceleration=10, max_speed=1) # trapezium speed profile
+    elif motion_planner == 'linear':
+        trajectory = linear_interpolation(current_pos, end_pos)
+
+    for i in range(len(trajectory)):
+        for j in range(3):
+            trajectory[i][j] = round(trajectory[i][j], 2)
+
+    for i in range(len(trajectory)):
+        print trajectory[i]
+        try:
+            step = ik_solver(trajectory[i][0], trajectory[i][1], trajectory[i][2], q1[0], q1[1], q1[2], q1[3])
+        except IndexError:
+            continue
+        if step is None:
+            continue
+
+        # joint_interpolator(publishers, current_angles, step)
+        for i in range(7):
+            publishers[i].publish(step[i])
 
 Moving a Brick
 ----
@@ -98,7 +138,28 @@ Moving a Brick
 
 .. code-block::
    
-   needs code here    
+   def pickPlace(publishers, grip_pos, grip_pub, brick_start, brick_end): # picks up brick and places it at the end position. Function ends with end_effecttor above end position. See Key Functions in the documentation.
+    raise_height = 0.8 # the height that the end effector will lift bricks to when moving
+    sleep_time = 2 # amount of seconds between movements
+    pbh = 0.243 # the height above the brick that the end effector must be to lift it
+
+    joint_move(publishers, [brick_start[0], brick_start[1], raise_height]) # moving gripper above brick start
+    rospy.sleep(sleep_time)
+    grip_move(grip_pos, grip_pub, 1, 1) # opening grippers
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_start[0], brick_start[1], brick_start[2]+pbh]) # moving to pick brick height
+    rospy.sleep(sleep_time)
+    grip_move(grip_pos, grip_pub, -1, -1) # closing grippers
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_start[0], brick_start[1], raise_height]) # moving to brick raise height
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_end[0], brick_end[1], raise_height]) # moving to above brick destination
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_end[0], brick_end[1], brick_end[2]+pbh]) # moving to brick end position
+    rospy.sleep(sleep_time)
+    grip_move(grip_pos, grip_pub, 1, 1) # opening grippers
+    rospy.sleep(sleep_time)
+    joint_move(publishers, [brick_end[0], brick_end[1], raise_height]) # moving back up in preparation for next brick    
     
 Moving the Gripper
 ----
@@ -114,9 +175,21 @@ A number of debugging functions were used in order to test various aspects of th
 
 The ``franka_test`` function comes from the *example_joint_publisher.py* script provided to us. It tests that the franka panda robot and simulation are working as well as ros (the topics and publishers for the robot arm and gripper). This was the the most basic test for functionality and further development.
 
+.. code-block::
+   
+   needs code here
+
 The ``sequence`` function tests efficacy of the inverse kinematics solver. The function instructs the robot arm to move to a number (4) of positions to demonstrate that the inverse kinematic solver works irrespective of any trajectory planning. If the robot does not move through the positions but the ``franka_test`` fuction does work then the issue can be narrrowed to the inverse kinematics solver. The ``sequence`` function was hugely helpful in establishing that the inverse kinematics solver was sometimes returning unsatisfactory outputs (made the movement unstable and took long routes on occasion) and led to us realising that we were using an abritrary seed state (inital state) for the inverse kinematics as opposed to the current position.
 
+.. code-block::
+   
+   needs code here
+
 The ``joint_move_test`` function test the trajcotry planning function. It is essentially the same as the ``sequence`` function except with a slower, smoother movement. A comparison of this and the ``sequence`` function is very helpful in demonstrating the efficacy of the trajectory planning.
+
+.. code-block::
+   
+   needs code here
 
 The ``pick_brick`` function tests the robot arm picking up a single brick. As well as testing the for all the aforementioned functions, this funciton crucially also tests the Gazebo simulation physics and interactions between the brick and the grippers. The ``pick_brick`` function also was used to find the correct Cartesian end-effector orientation to be converted to a quaternion to input into the IK solver. This function was also used in order to determine issues.
 
