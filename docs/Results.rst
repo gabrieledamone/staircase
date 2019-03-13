@@ -1,8 +1,8 @@
 *****************************
-Results
+Simulation
 *****************************
 
-Objectives
+Analysis
 ===================================
 
 #. Simulation Success Rate
