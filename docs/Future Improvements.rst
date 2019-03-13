@@ -1,7 +1,7 @@
 ====
 Future Improvements
 ====
-
+In the absence of technical problems due to Gazebo, the group would have accomplished the following.
 
 Testing the code on the real robot
 ====
@@ -12,3 +12,12 @@ Improving the motion planning
 ====
 
 Perfecting the interpolation of joint angles could reduce 'shakiness' in the robot's movement (see Motion Planning page for details).
+
+Error detection
+====
+
+The published position of the gripper's fingers can be used to detect if the end effector has failed to pick up or dropped a brick, and an error recovery protocol could be added.
+
+First, asking the user whether they wish to continue building the staircase after the error occurred. If the robot has dropped a brick over the staircase it has built so far and moved it significantly as a result, the user may not with to continue.
+
+If the error did not cause any movement of other bricks in the workspace, the user can input to continue building the staircase: the gripper is told to pick up the next brick in the column 'stations', and to place it in the staircase position that the previous brick would have occupied had it not fallen.
