@@ -37,7 +37,7 @@ The dt variable is fixed by the control loop running the libfranka control loop.
 A list of speeds is then calculated by applying this time list and the parameters calculated earlier, speed graph is sampled to create list to go with time list::
 
         speed_values = []
-        c = (0 - (-acc) * time_list[-1])
+        c = (0 - (-acc) * time_list[-1]) # c is the calculated intercept for the deceleration period)
         for t in time_list:
             if t <= end_stage_t:
                 # acceleration period
@@ -51,7 +51,6 @@ A list of speeds is then calculated by applying this time list and the parameter
                 # constant speed at target speed
                 speed_values.append(target_speed)
 
-(where c is the calculated intercept for the deceleration period)
 The original discretised path list is now sampled using the speed list. For each speed, the corresponding number of samples in the path list is calculated (speed_value * dt / dx) and these sampled points are stored in a new list of new_marker::
 
 new_marker = np.hstack((smooth_path[smooth_path_idx], speed_values[i]))
@@ -66,4 +65,6 @@ On the other hand, when the traveling path is not far enough , there isn’t eno
     :align: center
     :figclass: align-center
     
-In this case the profile is still useful becasue it decrease the speed of the motion as a whole. 
+In this case the profile is still useful becasue it decrease the speed of the motion as a whole. The target speed will then become::
+
+target_speed = np.sqrt(path_length * acceleration)
