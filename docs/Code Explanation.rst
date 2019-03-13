@@ -5,13 +5,17 @@ Code Explanation
 Objectives
 ====
 
-#. Code Feature 1
+As discussed previously we have designed the functionnalites of the final code to be program by **individual groups** and then be put together at a later date.
+The below features are *key* in our programming execution and what we understand as *milestones* in our work.
+
+#. Pick & Placing
 
 .. literalinclude:: ../_Planning/stairecaseReal.py
   :lines: 385-406
   
-#. Code Feature 2
-#. Code Feature 3
+#. Pushing
+
+#. Autonomous coding
 
 
 Key Functions
