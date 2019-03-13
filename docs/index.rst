@@ -99,6 +99,7 @@ Contents
    Project Specifications
    IK Solver
    Motion Planning
+   Speed
    Fully Autonomous Robot
    Concept Development
    Gazebo Limitations
@@ -107,7 +108,6 @@ Contents
    Error Detection
    Ambition
    Outstanding Features
-   Speed
    Redundancy Resolution
    Design of initial Workspace
    
