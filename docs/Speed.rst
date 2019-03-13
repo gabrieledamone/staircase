@@ -36,7 +36,6 @@ The dt variable is fixed by the control loop running the libfranka control loop.
 
 A list of speeds is then calculated by applying this time list and the parameters calculated earlier, speed graph is sampled to create list to go with time list::
 
-   # sample speed graph to create list to go with time list
         speed_values = []
         c = (0 - (-acc) * time_list[-1])
         for t in time_list:
@@ -53,4 +52,15 @@ A list of speeds is then calculated by applying this time list and the parameter
                 speed_values.append(target_speed)
 
 (where c is the calculated intercept for the deceleration period)
-The original discretised path list is now sampled using the speed list. For each speed, the corresponding number of samples in the path list is calculated (speed_value * dt / dx) and these sampled points are stored in a new list which can be sent directly to franka_controller_sub
+The original discretised path list is now sampled using the speed list. For each speed, the corresponding number of samples in the path list is calculated (speed_value * dt / dx) and these sampled points are stored in a new list of new_marker::
+
+new_marker = np.hstack((smooth_path[smooth_path_idx], speed_values[i]))
+
+Finally the trajectory will be return as a vertical stack in the form of[start position, end position, speed information] by::
+
+trajectory = np.vstack((trajectory, new_marker))
+
+On the other hand, when the traveling path is not far enough to reach the target speed, the profile will simply become triangular.
+.. figure:: pictures/trapezium2.png
+    :align: center
+    :figclass: align-center
