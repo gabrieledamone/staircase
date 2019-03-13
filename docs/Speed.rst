@@ -1,7 +1,8 @@
 **********
 Trapezium Velocity Profile 
 **********
-    
+A typical way to control robotic joints is to use a trapezoidal speed profile, which is quite similar to the profiles you’d get by driving your car: acceleration, constant speed, and deceleration.
+
 Imagine a vehicle running to its target. Instead of rushing and bumping into the end point, the vehicle must accelerate and keep running at a constant speed, and before reaching the goal, it will start decelerating and get to the end safely. That is the general idea of Trapezium Velocity Profile which we applied to the motion of Franka robot.
 
 .. figure:: pictures/trapezium.png
@@ -23,3 +24,7 @@ Based on the two input parameters, the profile will be constructed
     The mid stage displacement is calculated: path_length - 2 * end_stage_displacement
     The mid stage time is calculated: mid_stage_displacement / target_speed
     The total time is calculated: end_stage_time * 2 + mid_stage_time
+
+
+.. note::
+The dt variable is fixed by the control loop running the libfranka control loop. Therefore, it cannot be changed locally from 0.05 seconds in this trajectory generator.
