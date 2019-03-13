@@ -12,3 +12,12 @@ Objectives
 .. figure:: pictures/ConceptDevelopment.png
     :align: center
     :figclass: align-center
+
+Innovative Pushing Feature
+===================================
+
+Autonomy
+===================================
+
+Error Detection
+===================================
