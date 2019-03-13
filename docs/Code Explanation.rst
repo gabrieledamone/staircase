@@ -7,7 +7,7 @@ Objectives
 
 #. Code Feature 1
 
-.. literalinclude:: ../../StairecaseReal.py
+.. literalinclude:: ../../stairecaseReal.py
   :lines: 385-406
   
 #. Code Feature 2
