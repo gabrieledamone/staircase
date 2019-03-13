@@ -80,8 +80,6 @@ Below the code again in all it's glory:
 Key Functions
 ====
 
-Going further from our objectives we came to define key functions in our codes functioning that we are visiting below.
-
 Joint Move
 ----
 The core joint planning function used was the ``joint_move`` function. Inputting the joint publishers of the robot arm and the desired end effector position moves the robot arm from its **current** end effector position to the **desired** position using the specified *trajectory planning*. A key improvement would be to give the user a choice of trajectory planning alogrithms (linear, trigonometric, polynomial, trapezoid velocity profile etc.) for different situations.
@@ -208,7 +206,7 @@ Debug Functions
 ----
 A number of debugging functions were used in order to test various aspects of the code. 
 
-The ``franka_test`` function comes from the *example_joint_publisher.py* script provided to us. It tests that the franka panda robot and simulation are working as well as ros (the topics and publishers for the robot arm and gripper). This was the the most basic test for functionality and further development.
+* The ``franka_test`` function comes from the *example_joint_publisher.py* script provided to us. It tests that the franka panda robot and simulation are working as well as ros (the topics and publishers for the robot arm and gripper). This was the the most basic test for functionality and further development.
 
 .. code-block::
    
@@ -229,7 +227,7 @@ The ``franka_test`` function comes from the *example_joint_publisher.py* script 
 
         rate.sleep()
 
-The ``sequence`` function tests efficacy of the inverse kinematics solver. The function instructs the robot arm to move to a number (4) of positions to demonstrate that the inverse kinematic solver works irrespective of any trajectory planning. If the robot does not move through the positions but the ``franka_test`` fuction does work then the issue can be narrrowed to the inverse kinematics solver. The ``sequence`` function was hugely helpful in establishing that the inverse kinematics solver was sometimes returning unsatisfactory outputs (made the movement unstable and took long routes on occasion) and led to us realising that we were using an abritrary seed state (inital state) for the inverse kinematics as opposed to the current position.
+* The ``sequence`` function tests efficacy of the inverse kinematics solver. The function instructs the robot arm to move to a number (4) of positions to demonstrate that the inverse kinematic solver works irrespective of any trajectory planning. If the robot does not move through the positions but the ``franka_test`` fuction does work then the issue can be narrrowed to the inverse kinematics solver. The ``sequence`` function was hugely helpful in establishing that the inverse kinematics solver was sometimes returning unsatisfactory outputs (made the movement unstable and took long routes on occasion) and led to us realising that we were using an abritrary seed state (inital state) for the inverse kinematics as opposed to the current position.
 
 .. code-block::
    
@@ -250,7 +248,7 @@ The ``sequence`` function tests efficacy of the inverse kinematics solver. The f
             publishers[i].publish(routine[j][i])
         rospy.sleep(5)
 
-The ``joint_move_test`` function test the trajcotry planning function. It is essentially the same as the ``sequence`` function except with a slower, smoother movement. A comparison of this and the ``sequence`` function is very helpful in demonstrating the efficacy of the trajectory planning.
+* The ``joint_move_test`` function test the trajcotry planning function. It is essentially the same as the ``sequence`` function except with a slower, smoother movement. A comparison of this and the ``sequence`` function is very helpful in demonstrating the efficacy of the trajectory planning.
 
 .. code-block::
    
@@ -260,7 +258,7 @@ The ``joint_move_test`` function test the trajcotry planning function. It is ess
     rospy.sleep(5)
     joint_move(publishers, [0.5, 0, 0.3])
 
-The ``pick_brick`` function tests the robot arm picking up a single brick. As well as testing the for all the aforementioned functions, this funciton crucially also tests the Gazebo simulation physics and interactions between the brick and the grippers. The ``pick_brick`` function also was used to find the correct Cartesian end-effector orientation to be converted to a quaternion to input into the IK solver. This function was also used in order to determine issues.
+* The ``pick_brick`` function tests the robot arm picking up a single brick. As well as testing the for all the aforementioned functions, this funciton crucially also tests the Gazebo simulation physics and interactions between the brick and the grippers. The ``pick_brick`` function also was used to find the correct Cartesian end-effector orientation to be converted to a quaternion to input into the IK solver. This function was also used in order to determine issues.
 
 .. code-block::
    
