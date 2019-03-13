@@ -61,6 +61,7 @@ Finally the trajectory will be return as a vertical stack in the form of[start p
 trajectory = np.vstack((trajectory, new_marker))
 
 On the other hand, when the traveling path is not far enough to reach the target speed, the profile will simply become triangular.
+
 .. figure:: pictures/trapezium2.png
     :align: center
     :figclass: align-center
