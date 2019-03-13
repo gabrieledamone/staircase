@@ -19,5 +19,9 @@ Innovative Pushing Feature
 Autonomy
 ===================================
 
+.. figure:: pictures/MakingRobotFullyAutonomous.png
+    :align: center
+    :figclass: align-center
+    
 Error Detection
 ===================================
