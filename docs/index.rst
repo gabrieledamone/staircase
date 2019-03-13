@@ -103,8 +103,6 @@ Contents
    Concept Development
    Gazebo Limitations
    Code Explanation
-   Results
-   Future Improvements
    Robustness
    Error Detection
    Ambition
@@ -116,10 +114,10 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Project Management
+   :caption: Results
 
-   project-proposal
-   project-plan
+   Simulation
+   Future Improvements
 
 .. toctree::
    :maxdepth: 2
