@@ -30,4 +30,8 @@ def joint_interpolator(publishers, current_angles, end_angles):
         for i in range(7):
             publishers[i].publish(round(steps[i][j],3))
             
+
+.. figure:: pictures/MotionPlanningChallenges.png
+    :align: center
+    :figclass: align-center
         
