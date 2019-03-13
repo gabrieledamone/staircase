@@ -5,8 +5,8 @@ Robot Selection
 The choice
 ===================================
 
-#. No Gaps in between Steps
-#. User Inputs number of Steps
+#. Franka Emika
+#. DE NIRO
 
 .. figure:: pictures/RobotSelection.png
     :align: center
