@@ -1,29 +1,37 @@
 ====
 Code Explanation
 ====
-
 Let's have a look at our final code: it's main objectives, structure and key functions within it.
 
 Objectives
 ====
-
 As discussed previously we have designed the functionalites of the final code to be programmed by **individual groups** and then be put together at a later date to produce the **result** we have today.
 The below features are *key* in our programming execution and what we understand as *milestones* in our work.
 
-#. Pick & Placing
+Pick & Placing
+----
+A first step in our code is to make sure that we are able to pick and place bricks in order to build a staircase.
    
-#. Pushing
+Pushing
+----
+A second step is to push bricks accordingly at the end when the whole staircase is built.
 
-#. Autonomous coding
+Autonomous staircase building
+----
+Finally we need to construct a code structure that makes the robot autonomous: 
+   * it can build different heights of staircases
+   * has undergone a specific workplace planning and has knowledge on where bricks are
+   * identifies issues and can react to them to a certain extent
 
-Structure
+Overall Structure
 ====
 
 .. code-block::
    
-   needs code image here
    
-.. literalinclude:: ../_Planning/staircasereal.py
+   
+.. literalinclude:: ../_Planning/staircaseReal.py
+   :lines:
 
 
 Key Functions
@@ -61,13 +69,13 @@ Debug Functions
 ----
 A number of debugging functions were used in order to test various aspects of the code. 
 
-The "franka_test" function comes from the example_joint_publisher.py script provided to us. It tests that the franka panda robot and simulation are working as well as ros (the topics and publishers for the robot arm and gripper). This was the the most basic test for functionality and further development.
+The **"franka_test"** function comes from the example_joint_publisher.py script provided to us. It tests that the franka panda robot and simulation are working as well as ros (the topics and publishers for the robot arm and gripper). This was the the most basic test for functionality and further development.
 
-The "sequence" function tests efficacy of the inverse kinematics solver. The function instructs the robot arm to move to a number (4) of positions to demonstrate that the inverse kinematic solver works irrespective of any trajectory planning. If the robot does not move through the positions but the "franka_test" fuction does work then the issue can be narrrowed to the inverse kinematics solver. The "sequence" function was hugely helpful in establishing that the inverse kinematics solver was sometimes returning unsatisfactory outputs (made the movement unstable and took long routes on occasion) and led to us realising that we were using an abritrary seed state (inital state) for the inverse kinematics as opposed to the current position.
+The **"sequence"** function tests efficacy of the inverse kinematics solver. The function instructs the robot arm to move to a number (4) of positions to demonstrate that the inverse kinematic solver works irrespective of any trajectory planning. If the robot does not move through the positions but the "franka_test" fuction does work then the issue can be narrrowed to the inverse kinematics solver. The "sequence" function was hugely helpful in establishing that the inverse kinematics solver was sometimes returning unsatisfactory outputs (made the movement unstable and took long routes on occasion) and led to us realising that we were using an abritrary seed state (inital state) for the inverse kinematics as opposed to the current position.
 
-The "joint_move_test" function test the trajcotry planning function. It is essentially the same as the "sequence" function except with a slower, smoother movement. A comparison of this and the "sequence" function is very helpful in demonstrating the efficacy of the trajectory planning.
+The **"joint_move_test"** function test the trajcotry planning function. It is essentially the same as the "sequence" function except with a slower, smoother movement. A comparison of this and the "sequence" function is very helpful in demonstrating the efficacy of the trajectory planning.
 
-The "pick_brick" function tests the robot arm picking up a single brick. As well as testing the for all the aforementioned functions, this funciton crucially also tests the Gazebo simulation physics and interactions between the brick and the grippers. The "pick_brick" function also was used to find the correct Cartesian end-effector orientation to be converted to a quaternion to input into the IK solver. This function was also used in order to determine issues.
+The **"pick_brick"** function tests the robot arm picking up a single brick. As well as testing the for all the aforementioned functions, this funciton crucially also tests the Gazebo simulation physics and interactions between the brick and the grippers. The "pick_brick" function also was used to find the correct Cartesian end-effector orientation to be converted to a quaternion to input into the IK solver. This function was also used in order to determine issues.
 
 .. code-block::
    
