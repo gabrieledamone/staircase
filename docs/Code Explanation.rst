@@ -167,7 +167,42 @@ As opposed to using the gripper width topic in order to control the gripper fing
 
 .. code-block::
    
-   needs code here
+   def grip_move(grip_pos, grip_pub, f1, f2): # See Key Functions in the documentation.
+    grip_pos.data = [f1, f2]
+    grip_pub.publish(grip_pos)
+    return
+   
+Pushing
+----
+The ``push`` function was defined to push horizontally all the bricks together at the end of the staircase building.
+
+.. code-block::
+   
+   def push(publishers, grip_pos, grip_pub):
+    q1 = quaternion_from_euler(-1.57,-0.785, 0)
+    # print q1
+    initial = [-0.0027898559799117706, -0.4938102538628373, 0.011231754474766653, -2.4278711125230714, -0.014718553972133286, 1.889487912176289, -2.300243077342502]
+    for i in range(7):
+        publishers[i].publish(initial[i])
+    rospy.sleep(5)
+
+    step1 = ik_solver(0.4, 0.2, 0.1, q1[0], q1[1], q1[2], q1[3])
+    # step2 = ik_solver(0.4, 0.5, 0.2, q1[0], q1[1], q1[2], q1[3])
+
+    rospy.loginfo("Moving Gripper in position")
+    for i in range(7):
+        publishers[i].publish(step1[i])
+    rospy.sleep(2)
+
+    rospy.loginfo("Opening Gripper")
+    grip_move(grip_pos, grip_pub, 1, 1)
+    rospy.sleep(2)
+
+
+    rospy.loginfo("Pushing Action")
+   
+    joint_move_push(publishers, [0.4, 0.2, 0.1], [0.4, 0.5, 0.1])
+    rospy.sleep(2)
     
 Debug Functions
 ----
@@ -177,22 +212,88 @@ The ``franka_test`` function comes from the *example_joint_publisher.py* script 
 
 .. code-block::
    
-   needs code here
+   def franka_test(start, publishers, initial, grip_pos, grip_pub): # example joint publisher to test the franka movement is working. See Source Code in documentation
+    rospy.loginfo("Testing Franka Movement")
+    while not rospy.is_shutdown():
+        elapsed = rospy.Time.now() - start
+        delta_angle = math.pi / 16 * (math.cos(math.pi / 5 * elapsed.to_sec()))
+
+        for i in range(7):
+            publishers[i].publish(initial[i] + delta_angle)
+            # print initial[i]+delta_angle
+
+        grip_move(grip_pos,grip_pub, delta_angle*10, delta_angle*10)
+        print delta_angle*10
+        # grip_pos.data = [delta_angle*10, delta_angle*10]
+        # grip_pub.publish(grip_pos)
+
+        rate.sleep()
 
 The ``sequence`` function tests efficacy of the inverse kinematics solver. The function instructs the robot arm to move to a number (4) of positions to demonstrate that the inverse kinematic solver works irrespective of any trajectory planning. If the robot does not move through the positions but the ``franka_test`` fuction does work then the issue can be narrrowed to the inverse kinematics solver. The ``sequence`` function was hugely helpful in establishing that the inverse kinematics solver was sometimes returning unsatisfactory outputs (made the movement unstable and took long routes on occasion) and led to us realising that we were using an abritrary seed state (inital state) for the inverse kinematics as opposed to the current position.
 
 .. code-block::
    
-   needs code here
+   def sequence(publishers): # testing a sequence of positions to determine if the ik_solver function is giving the correct output. See Source Code in documentation
+    rospy.loginfo("Testing ik solver")
+
+    # positions in sequence
+    pos1 = ik_solver(0.2, 0.1, 0.8, 0.0, 0.0, 0.0, 1.0)
+    pos2 = ik_solver(0.3, 0.1, 0.8, 0.0, 0.0, 0.0, 1.0)
+    pos3 = ik_solver(0.4, 0.1, 0.8, 0.0, 0.0, 0.0, 1.0)
+    pos4 = ik_solver(0.5, 0.1, 0.8, 0.0, 0.0, 0.0, 1.0)
+
+    print pos1, pos2, pos3, pos4
+
+    routine = [pos1, pos2, pos3, pos4]
+    for j in range (len(routine)):
+        for i in range(7):
+            publishers[i].publish(routine[j][i])
+        rospy.sleep(5)
 
 The ``joint_move_test`` function test the trajcotry planning function. It is essentially the same as the ``sequence`` function except with a slower, smoother movement. A comparison of this and the ``sequence`` function is very helpful in demonstrating the efficacy of the trajectory planning.
 
 .. code-block::
    
-   needs code here
+   def joint_move_test(publishers): # testing the joint_move function. See Source Code in documentation
+    print("Testing Joint Move Function")
+    joint_move(publishers, [0.5, 0, 0.8])
+    rospy.sleep(5)
+    joint_move(publishers, [0.5, 0, 0.3])
 
 The ``pick_brick`` function tests the robot arm picking up a single brick. As well as testing the for all the aforementioned functions, this funciton crucially also tests the Gazebo simulation physics and interactions between the brick and the grippers. The ``pick_brick`` function also was used to find the correct Cartesian end-effector orientation to be converted to a quaternion to input into the IK solver. This function was also used in order to determine issues.
 
 .. code-block::
    
-   needs code here
+   def pick_brick(publishers, grip_pos, grip_pub): # picks up bring placed at x=0.4, y=0, z=0, roll, pitch, yaw=0
+    q1 = quaternion_from_euler(-3.14, 0.0, 2.3) # gripper facing downwards
+
+    # print q1
+    initial = [-0.0027898559799117706, -0.4938102538628373, 0.011231754474766653, -2.4278711125230714, -0.014718553972133286, 1.889487912176289, -2.300243077342502]
+    for i in range(7):
+        publishers[i].publish(initial[i])
+    rospy.sleep(5)
+
+    step1 = ik_solver(0.4, 0.0, 0.6, q1[0], q1[1], q1[2], q1[3])
+    step2 = ik_solver(0.4, 0.0, 0.25, q1[0], q1[1], q1[2], q1[3])
+
+    rospy.loginfo("Moving Gripper above brick")
+    for i in range(7):
+        publishers[i].publish(step1[i])
+    rospy.sleep(5)
+
+    rospy.loginfo("Opening Gripper")
+    grip_move(grip_pos, grip_pub, 1, 1)
+    rospy.sleep(5)
+
+    rospy.loginfo("Lowering Gripper")
+    for i in range(7):
+        publishers[i].publish(step2[i])
+    rospy.sleep(5)
+
+    rospy.loginfo("Closing Gripper")
+    grip_move(grip_pos, grip_pub, -1, -1)
+    rospy.sleep(5)
+
+    rospy.loginfo("Lifting Brick")
+    for i in range(7):
+        publishers[i].publish(step1[i])
