@@ -25,6 +25,12 @@ Based on the two input parameters, the profile will be constructed
     The mid stage time is calculated: mid_stage_displacement / target_speed
     The total time is calculated: end_stage_time * 2 + mid_stage_time
 
+Then creating a time list using 0->Total time in steps of dt::
+
+    time_list = np.arange(start=0, stop=total_time, step=dt)
+    np.reshape(time_list, (np.shape(time_list)[0], 1))
+        
+
 
 .. note::
 The dt variable is fixed by the control loop running the libfranka control loop. Therefore, it cannot be changed locally from 0.05 seconds in this trajectory generator.
