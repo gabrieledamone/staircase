@@ -31,7 +31,7 @@ Overall Structure
 
 .. code-block::
 
-      height = int(input("Height of Staircase: ")) # ask for height of staircase
+    height = int(input("Height of Staircase: ")) # ask for height of staircase
     # print(height)
     print("Building staircase of height " + str(height)) # output for transparency
     # if height >= 5: print("Sorry our robot is lazy today") # lazy
@@ -43,9 +43,7 @@ Overall Structure
 .. code-block::
 
    locationDestinationOptions = [map.one, map.two, map.three, map.four, map.five] # load options array of height station maps,      order of bricks is order of pick up: right to left view from top
-
     # heightMap = [[],[],[],[]]
-
     locationDestinationMap = locationDestinationOptions[height-1] # read location/destination array from options array from height with locations in order of all bricks (according to logic) and where they need to go
     # run function which uses locationDestinationMap to place bricks in Gazebo
     station = [i[0] for i in locationDestinationMap] # define station array listing starting locations for bricks
@@ -68,24 +66,14 @@ Overall Structure
             if not tracker: # exit once done
                 break
         break
-
     push(publishers, grip_pos, grip_pub) # pushing things into a real staircase
     # staircase(arm_pubs, grip_pos, grip_pub)
 
 This while loop places all the bricks and runs the following 3 functions:
 
-* pickPlace::
-
-   function
-
-* Push::
-
-   function
-
-* ErrorCatching::
-
-   function
-   
+* pickPlace
+* Push
+* ErrorCatching
    
 .. literalinclude:: ../_Planning/staircaseReal.py
    :lines: 485-496
