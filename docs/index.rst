@@ -18,7 +18,7 @@ The Authors
 - Huyang Liu 
 - Frederic Macher (frederic.macher16@imperial.ac.uk)
 - William Kwasi Pepera 
-- Federico Tiersen 
+- Federico Tiersen (federico.tiersen16@imperial.ac.uk)
 
 
 
@@ -97,19 +97,14 @@ Contents
    :caption: Project Development
 
    Project Specifications
+   Concept Development
+   Gazebo Limitations
    IK Solver
    Motion Planning
    Speed
    Fully Autonomous Robot
-   Concept Development
-   Gazebo Limitations
    Code Explanation
-   Robustness
-   Error Detection
-   Ambition
-   Outstanding Features
-   Redundancy Resolution
-   Design of initial Workspace
+  
    
 
 .. toctree::
