@@ -1,16 +1,16 @@
-**********************************
+====
 DE3-ROB1 STAIRCASE Group Documentation
-**********************************
+====
 
 About
-=====
+====
 
 This is the documentation for the group STAIRCASE Project for the Robotics 1 module in Design Engineering, Imperial College London, in March 2019.
 
 The project is hosted on GitHub: https://github.com/gabrieledamone/staircase
 
 The Authors
------------
+----
 
 - Gabriele D'Amone (gabriele.damone16@imperial.ac.uk)
 - SeungHui Huh 
@@ -23,7 +23,7 @@ The Authors
 
 
 Summary
-=======
+====
 
 The goal of this project was to create a fully automated staircase-builder robot by applying code to a FRANKA Panda arm. The project was written in Python and ROS was used to interface with FRANKA.
 
@@ -32,7 +32,7 @@ The goal of this project was to create a fully automated staircase-builder robot
 Future improvements to the project could include...
 
 Popular Links
-=============
+====
 
 * `Using Python to control Franka (without ROS)`_.
 * `Using Python to control Franka with ROS topics`_.
@@ -44,7 +44,7 @@ Popular Links
 
 
 Contents
-========
+====
 
 - Setting up Franka Emika Panda & Workstation
 - Project Specifications & Requirements
