@@ -68,3 +68,7 @@ On the other hand, when the traveling path is not far enough , there isn’t eno
 In this case the profile is still useful becasue it decrease the speed of the motion as a whole. However, the target speed will be calculated differently if path lenth is shorter than minimum path length (which is target_speed ** 2 / acceleration)::
 
 target_speed = np.sqrt(path_length * acceleration)
+
+
+Documentation
+==============================
