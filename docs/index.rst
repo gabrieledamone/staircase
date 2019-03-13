@@ -123,7 +123,7 @@ Contents
    :maxdepth: 2
    :caption: Appendix
 
-   resources
+   Helpful Resources
    ground-rules
    
    Indices and tables
