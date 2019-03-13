@@ -75,6 +75,3 @@ Implementation
 
 
 **Documentation**:
-.. automodule:: trapezium
-  :members:
-  :undoc-members:
