@@ -10,7 +10,7 @@ The below features are *key* in our programming execution and what we understand
 
 #. Pick & Placing
 
-.. literalinclude:: ../stairecaseReal.py
+.. literalinclude:: docs/stairecaseReal.py
   :lines: 385-406
   
 #. Pushing
