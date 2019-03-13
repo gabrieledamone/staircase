@@ -33,7 +33,7 @@ Overall Structure
 
 3. Finally a ``while loop`` is run which looks like this::
 
-   while loop
+      while loop
 
 This while loop places all the bricks and runs the following 3 functions:
 
