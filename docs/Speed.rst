@@ -14,7 +14,7 @@ Trapezium Velocity Profile is widely used in the industry, and the profile is co
 2.	The acceleration of the end-effector.( it will be mirrored to create deceleration period)
 The middle section is scaled according to the travel distance to keep the end-effector at a constant speed.
 
-To implement the Trapezium Velocity Profile, firstly we need to discretise the path into a number of small, equally sized unit. The ideal size of each unit is dx which is calculated by: dx = acceleration * dt**2.
+To implement the Trapezium Velocity Profile, firstly we need to discretise the path into a number of small, equally sized unit. The ideal size of each unit is dx which is calculated by ``dx = acceleration * dt**2``.
 
 There are two case that we considered while applying the profile. The first case is that the length of the path is long enough for the end-effector to reach the target speed. The middle sectiond is scaled along the time axis accordingly.
 
@@ -51,7 +51,7 @@ A list of speeds is then calculated by applying this time list and the parameter
                 # constant speed at target speed
                 speed_values.append(target_speed)
 
-The original discretised path list is now sampled using the speed list. For each speed, the corresponding number of samples in the path list is calculated (speed_value * dt / dx) and these sampled points are stored in a new list of new_marker::
+The original discretised path list is now sampled using the speed list. For each speed, the corresponding number of samples in the path list is calculated ``(speed_value * dt / dx)`````` and these sampled points are stored in a new list of new_marker::
 
 new_marker = np.hstack((smooth_path[smooth_path_idx], speed_values[i]))
 
@@ -67,30 +67,14 @@ On the other hand, when the traveling path is not far enough , there isn’t eno
     
 In this case the profile is still useful becasue it decrease the speed of the motion as a whole. However, the target speed will be calculated differently if path lenth is shorter than minimum path length (which is target_speed ** 2 / acceleration)::
 
-target_speed = np.sqrt(path_length * acceleration)
+``target_speed = np.sqrt(path_length * acceleration)``
 
 
 Implementation
 ==============
 
-**Example usage**::
-
-  # Create ROS node for this project runtime
-    rospy.init_node('chess_project_node', anonymous=True)
-
-  # Create an object of the Franka control class
-  arm = FrankaRos()
-
-  # Create a planner object for executing chess moves
-  planner = MotionPlanner(visual=False, debug=True)
-
-  # LATER ON IN THE CODE...
-
-  # msg = [('n', 'h1g3')]  # example of chess move
-  planner.input_chess_move(arm, msg)
-
 
 **Documentation**:
-.. automodule:: motion
+.. automodule:: trapezium
   :members:
   :undoc-members:
