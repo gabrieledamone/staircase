@@ -14,7 +14,7 @@ The Authors
 
 - Gabriele D'Amone (gabriele.damone16@imperial.ac.uk)
 - SeungHui Huh 
-- YongXuam Li
+- YongXuan Li
 - Huyang Liu 
 - Frederic Macher (frederic.macher16@imperial.ac.uk)
 - William Kwasi Pepera 
