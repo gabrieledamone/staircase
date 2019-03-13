@@ -60,8 +60,10 @@ Finally the trajectory will be return as a vertical stack in the form of[start p
 
 trajectory = np.vstack((trajectory, new_marker))
 
-On the other hand, when the traveling path is not far enough to reach the target speed, the profile will simply become triangular.
+On the other hand, when the traveling path is not far enough , there isn’t enough time to accelerate, reach constant velocity and then decelerate. The profile will then simply become triangular.
 
 .. figure:: pictures/trapezium2.png
     :align: center
     :figclass: align-center
+    
+In this case the profile is still useful becasue it decrease the speed of the motion as a whole. 
