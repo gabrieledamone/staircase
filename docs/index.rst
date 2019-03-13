@@ -102,6 +102,7 @@ Contents
    Fully Autonomous Robot
    Concept Development
    Gazebo Limitations
+   Code Explanation
    Robustness
    Error Detection
    Ambition
