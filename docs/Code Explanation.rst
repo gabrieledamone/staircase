@@ -1,9 +1,9 @@
-*****************************
+====
 Code Explanation
-*****************************
+====
 
 Objectives
-===================================
+====
 
 #. Code Feature 1
 
@@ -15,26 +15,26 @@ Objectives
 
 
 Key Functions
-===================================
+====
 
 Joint Move
-----------
+----
 The core joint planning function used was the "joint_move" function. Inputting the joint publishers of the robot arm and the desired end effector position moves the robot arm from its current end effector position to the desired position using the specified trajectory planning. A key improvement would be to give the user a choice of trajectory planning alogrithms (linear, trigonometric, polynomial, trapezoid velocity profile etc.) for different situations.
 
 Currently, the joint move function employs the inverse kinematics function and moves the robot arm a single step in each iteration of the task space trajectory. This meant that the robot arm was being moved without reference to the entire joint space trajectory. By performing the inverse kinematics on the entire list of task space steps and then performing trajectory smoothing (low pass filter, damping) before the joint angles are published, the shaking could be eliminated from the robot arm movement.
 
 Moving a Brick
-----------
+----
 
 Pickplace allows for a start position and end position to be input into the function and for all the necessary arm and gripper movements to be executed to move the brick from start to finish with uniaxial motion. The reason for uniaxial motion is so that there is much less chance of the interfering with obstacles as the end effector is lifted above the construction before any horizontal movement. Note that the horizontal movement can be duoaxial.
     
     
 Moving the Gripper
-----------
+----
 As opposed to using the gripper width topic in order to control the gripper fingers, the fingers were controlled indiviudally, incase that ever became necessary during the task.
     
 Debug Functions
-----------
+----
 A number of debugging functions were used in order to test various aspects of the code. 
 
 The "franka_test" function comes from the example_joint_publisher.py script provided to us. It tests that the franka panda robot and simulation are working as well as ros (the topics and publishers for the robot arm and gripper). This was the the most basic test for functionality and further development.
