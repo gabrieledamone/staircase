@@ -8,7 +8,7 @@ Objectives
 As discussed previously we have designed the functionalites of the final code to be programmed by **individual groups** and then be put together at a later date to produce the **result** we have today.
 The below features are *key* in our programming execution and what we understand as *milestones* in our work.
 
-Pick & Placing
+Picking & Placing
 ----
 A first step in our code is to make sure that we are able to pick and place bricks in order to build a staircase.
    
