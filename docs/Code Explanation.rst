@@ -27,11 +27,15 @@ Finally we need to construct a code structure that makes the robot autonomous:
 Overall Structure
 ====
 
-It all starts with the user that can key in the ``height`` that he wants the staircase to have.
+1. It all starts with the user that can key in the ``height`` that he wants the staircase to have.
 
-Then are loaded the relevant ``workspace maps`` for this specific ``height`` ie. the **initial** and **final** positions of the bricks.
+2. Then are loaded the relevant ``workspace maps`` for this specific ``height`` ie. the **initial** and **final** positions of the bricks.
 
-Finally a ``while loop`` is run which places all the bricks and runs the following 3 functions:
+3. Finally a ``while loop`` is run which looks like this::
+
+   while loop
+
+This while loop places all the bricks and runs the following 3 functions:
 
 * pickPlace::
 
@@ -44,11 +48,6 @@ Finally a ``while loop`` is run which places all the bricks and runs the followi
 * ErrorCatching::
 
    function
-
-Thw ``while loop`` looks like this::
-   
-   while loop
-   
    
    
 .. literalinclude:: ../_Planning/staircaseReal.py
