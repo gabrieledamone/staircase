@@ -27,7 +27,27 @@ Finally we need to construct a code structure that makes the robot autonomous:
 Overall Structure
 ====
 
-.. code-block::
+It all starts with the user that can key in the ``height`` that he wants the staircase to have.
+
+Then are loaded the relevant ``workspace maps`` for this specific ``height`` ie. the **initial** and **final** positions of the bricks.
+
+Finally a ``while loop`` is run which places all the bricks and runs the following 3 functions:
+
+* pickPlace::
+
+   function
+
+* Push::
+
+   function
+
+* ErrorCatching::
+
+   function
+
+Thw ``while loop`` looks like this::
+   
+   while loop
    
    
    
@@ -38,7 +58,7 @@ Overall Structure
 Key Functions
 ====
 
-Going further from our objectives we came to define key functions in our codes functioning that we are visiting below
+Going further from our objectives we came to define key functions in our codes functioning that we are visiting below.
 
 Joint Move
 ----
