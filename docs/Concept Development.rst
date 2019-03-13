@@ -9,13 +9,12 @@ Objectives
 #. Autonomy
 #. Error Detection
 
-.. figure:: pictures/ConceptDevelopment.png
-    :align: center
-    :figclass: align-center
-
 Innovative Pushing Feature
 ===================================
-
+.. figure:: pictures/innovative.png
+    :align: center
+    :figclass: align-center
+    
 Autonomy
 ===================================
 
