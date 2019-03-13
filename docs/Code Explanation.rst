@@ -22,6 +22,8 @@ Structure
 .. code-block::
    
    needs code image here
+   
+.. literalinclude:: ../_Planning/staircasereal.py
 
 
 Key Functions
