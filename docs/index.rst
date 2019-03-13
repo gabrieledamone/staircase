@@ -99,7 +99,7 @@ Contents
    Project Specifications
    IK Solver
    Motion Planning
-   Making the robot Fully autonomous
+   Fully Autonomous Robot
    Robustness
    Error Detection
    Ambition
