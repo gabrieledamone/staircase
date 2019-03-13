@@ -18,7 +18,7 @@ To implement the Trapezium Velocity Profile, firstly we need to discretise the p
 
 There are two case that we considered while applying the profile. The first case is that the length of the path is long enough for the end-effector to reach the target speed. The middle sectiond is scaled along the time axis accordingly.
 
-Based on the two input parameters, the profile will be constructed:
+Based on the two input parameters, the profile will be constructed::
 
     The end stage time is calculated: target_speed / acceleration
     The end stage displacement is calculated: end_stage_time * target_speed / 2
@@ -34,6 +34,23 @@ Then creating a time list using 0->Total time in steps of dt::
 .. note::
 The dt variable is fixed by the control loop running the libfranka control loop. Therefore, it cannot be changed locally from 0.05 seconds in this trajectory generator.
 
-A list of speeds is then calculated by applying this time list and the parameters calculated earlier 
+A list of speeds is then calculated by applying this time list and the parameters calculated earlier, speed graph is sampled to create list to go with time list::
+
+   # sample speed graph to create list to go with time list
+        speed_values = []
+        c = (0 - (-acc) * time_list[-1])
+        for t in time_list:
+            if t <= end_stage_t:
+                # acceleration period
+                speed_values.append(acc * t)
+
+            elif t >= end_stage_t + mid_stage_t:
+                # deceleration stage
+                speed_values.append(-acc * t + c)
+
+            elif t > end_stage_t:
+                # constant speed at target speed
+                speed_values.append(target_speed)
 
 (where c is the calculated intercept for the deceleration period)
+The original discretised path list is now sampled using the speed list. For each speed, the corresponding number of samples in the path list is calculated (speed_value * dt / dx) and these sampled points are stored in a new list which can be sent directly to franka_controller_sub
