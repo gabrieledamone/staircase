@@ -11,8 +11,10 @@ We see 3 main objectives in our concept development:
 #. Autonomy
 #. Error Detection
 
+
 Innovative Pushing Feature
 ----
+
 .. figure:: pictures/innovative.png
     :align: center
     :figclass: align-center
