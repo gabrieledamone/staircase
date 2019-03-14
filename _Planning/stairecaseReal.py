@@ -1,4 +1,4 @@
-!/usr/bin/env python
+#!/usr/bin/env python
 
 """
 Name: staircaseReal.py
@@ -157,6 +157,45 @@ def joint_move(publishers, end_pos, motion_planner='trapezium'): # movement smoo
         trajectory = apply_trapezoid_vel([current_pos, end_pos], acceleration=10, max_speed=1) # trapezium speed profile
     elif motion_planner == 'linear':
         trajectory = linear_interpolation(current_pos, end_pos)
+
+    for i in range(len(trajectory)):
+        for j in range(3):
+            trajectory[i][j] = round(trajectory[i][j], 2)
+
+    for i in range(len(trajectory)):
+        print trajectory[i]
+        try:
+            step = ik_solver(trajectory[i][0], trajectory[i][1], trajectory[i][2], q1[0], q1[1], q1[2], q1[3])
+        except IndexError:
+            continue
+        if step is None:
+            continue
+
+        # joint_interpolator(publishers, current_angles, step)
+        for i in range(7):
+            publishers[i].publish(step[i])
+
+def joint_move_push(publishers, end_pos, q1=quaternion_from_euler(-3.141, 0, 2.35)): # movement smoothing
+    
+    # input the joing publishers list and the end position in the form [x, y, z]
+    
+    global ef_pos # end effector position from rostopic
+    global position # joint angle positions from rostopic [2:9] fo joint positions
+    # print end_pos
+
+    current_pos = [ef_pos.x, ef_pos.y, ef_pos.z]
+    current_angles = np.array(position[2:9])
+
+    # end effector position interpolation
+    '''
+    # No motion planning
+    step = ik_solver(end_pos[0], end_pos[1], end_pos[2], q1[0], q1[1], q1[2], q1[3])
+    for i in range(7):
+        publishers[i].publish(step[i])
+    '''
+
+    trajectory = apply_trapezoid_vel([current_pos, end_pos], acceleration=10, max_speed=1.2) # trapezium speed profile
+    # trajectory = linear_interpolation(current_pos, end_pos)
 
     for i in range(len(trajectory)):
         for j in range(3):
@@ -411,7 +450,7 @@ def push(publishers, grip_pos, grip_pub):
     rospy.sleep(5)
 
     rospy.loginfo("Pushing Action")
-    joint_move(publishers, [0.4, 0.0, 0.064], q_push)
+    joint_move_push(publishers, [0.4, 0.0, 0.064], q_push)
     #rospy.sleep(2)
 
     rospy.loginfo("Opening Gripper")
@@ -419,11 +458,11 @@ def push(publishers, grip_pos, grip_pub):
     rospy.sleep(2)
 
     rospy.loginfo("Pushing Action")
-    joint_move(publishers, [0.4, 0.25, 0.064], q_push)
+    joint_move_push(publishers, [0.4, 0.25, 0.064], q_push)
     rospy.sleep(2)
 
     rospy.loginfo("Back to centre")
-    joint_move(publishers, [0.4, 0.0, 0.064], q_push)
+    joint_move_push(publishers, [0.4, 0.0, 0.064], q_push)
 
 
 if __name__ == '__main__':
