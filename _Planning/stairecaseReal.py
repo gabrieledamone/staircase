@@ -2,9 +2,6 @@
 
 """
 Name: staircaseReal.py
-Last edited by/at: FAM 040319 1831
-Description: final staircase file where we pull everything together
-building a staircase cuz we love it
 """
 
 import rospy
