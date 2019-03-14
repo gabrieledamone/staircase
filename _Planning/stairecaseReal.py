@@ -175,7 +175,11 @@ def joint_move(publishers, end_pos, motion_planner='trapezium'): # movement smoo
         for i in range(7):
             publishers[i].publish(step[i])
 
-def joint_move_push(publishers, end_pos, q1=quaternion_from_euler(-3.141, 0, 2.35)): # movement smoothing
+def joint_move_push(publishers, end_pos, q1=quaternion_from_euler(-3.141, 0, 2.35)):
+    '''
+    motion planning function for the pushing stage, with fixed horizontal end effector orientation.
+    Uses trapezium velocity profile.
+    '''
     
     # input the joing publishers list and the end position in the form [x, y, z]
     
