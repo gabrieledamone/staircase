@@ -71,7 +71,6 @@ Contents
    :maxdepth: 2
    :caption: Results
 
-   Video
    Simulation
    Future Improvements
 
