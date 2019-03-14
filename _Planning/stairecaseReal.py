@@ -403,30 +403,27 @@ def pickPlace(publishers, grip_pos, grip_pub, brick_start, brick_end): # picks u
     joint_move(publishers, [brick_end[0], brick_end[1], raise_height]) # moving back up in preparation for next brick
 
 def push(publishers, grip_pos, grip_pub):
-    q1 = quaternion_from_euler(-1.57,-0.785, 0)
-    # print q1
+    q_push = quaternion_from_euler(-1.57,-0.785, 0)
+    #print q1
     initial = [-0.0027898559799117706, -0.4938102538628373, 0.011231754474766653, -2.4278711125230714, -0.014718553972133286, 1.889487912176289, -2.300243077342502]
     for i in range(7):
         publishers[i].publish(initial[i])
     rospy.sleep(5)
 
-    step1 = ik_solver(0.4, 0.2, 0.1, q1[0], q1[1], q1[2], q1[3])
-    # step2 = ik_solver(0.4, 0.5, 0.2, q1[0], q1[1], q1[2], q1[3])
-
-    rospy.loginfo("Moving Gripper in position")
-    for i in range(7):
-        publishers[i].publish(step1[i])
-    rospy.sleep(2)
+    rospy.loginfo("Pushing Action")
+    joint_move(publishers, [0.4, 0.0, 0.064], q_push)
+    #rospy.sleep(2)
 
     rospy.loginfo("Opening Gripper")
     grip_move(grip_pos, grip_pub, 1, 1)
     rospy.sleep(2)
 
-
     rospy.loginfo("Pushing Action")
-   
-    joint_move_push(publishers, [0.4, 0.2, 0.1], [0.4, 0.5, 0.1])
+    joint_move(publishers, [0.4, 0.25, 0.064], q_push)
     rospy.sleep(2)
+
+    rospy.loginfo("Back to centre")
+    joint_move(publishers, [0.4, 0.0, 0.064], q_push)
 
 
 if __name__ == '__main__':
