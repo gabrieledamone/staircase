@@ -1,8 +1,8 @@
-*****************************
+====
 Gazebo Limitations
-*****************************
+====
 
-Resolving technical problems with the physics of the simulation in Gazebo significantly delayed our development process: it took us two weeks to solve the following four issues before being able to start writing and testing the motion planning code: 
+Resolving technical problems with the physics of the simulation in Gazebo significantly delayed our development process as it took us two weeks to solve the following four issues before being able to start writing and testing the motion planning code: 
 
 .. figure:: pictures/GazeboLimitations.png
     :align: center
