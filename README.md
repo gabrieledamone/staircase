@@ -1,8 +1,8 @@
-##  Design Engineering Staircase Robot
-
-.. figure:: pictures/cover.png
-    :align: center
-    :figclass: align-center
+<h1 align="center">
+	<img width="400" src="docs/pictures/cover.png" alt="Awesome">
+  <br>
+  Design Engineering Staircase Robot
+</h1>
 
 <h4 align="center">
   <a href="http://staircase.readthedocs.io">View the Project Documentation online</a>
