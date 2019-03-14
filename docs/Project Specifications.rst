@@ -17,4 +17,4 @@ The project includes:
 4. **Motion Control:** To tune a Cartesian impedance controller or other for fast and smooth motion of the arm
 5. **Hand control:** To control the grasping with the 2 fingers of the hand
 
-**Equipment:**``FRANKA Emika`` (Panda) and bricks.
+**Equipment:** ``FRANKA Emika`` (Panda) and bricks.
