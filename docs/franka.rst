@@ -98,19 +98,3 @@ Enter the web interface for the Arm. In the lower right menu, lock the brakes. T
 .. important::
   Remember to shutdown the controller from the web interface. This device is a computer, and should not be switched off from mains.
 
-Appendix
-========
-
-In rare cases, you may need to access the Franka arm directly by connecting the ethernet cable as seen in the image below:
-
-.. figure:: _static/franka_wiring_guide_robot_arm.png
-    :align: center
-    :figclass: align-center
-
-    Wiring configuration fo accessing the Arm directly (through the web interface).
-
-Log into the controller web interface (http://robot.franka.de) with:
-
-* Username: ``robin``
-* Password: ``panda``
-
