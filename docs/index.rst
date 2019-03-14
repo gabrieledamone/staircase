@@ -27,9 +27,6 @@ Summary
 
 The goal of this project was to create a fully automated staircase-builder robot by applying code to a FRANKA Panda arm. The project was written in Python and ROS was used to interface with FRANKA.
 
-...was used..
-
-Future improvements to the project could include...
 
 Popular Links
 =============
