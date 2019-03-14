@@ -489,5 +489,5 @@ if __name__ == '__main__':
                 break
         break
 
-    push(publishers, grip_pos, grip_pub) # pushing things into a real staircase
+    push(arm_pubs, grip_pos, grip_pub) # pushing things into a real staircase
     # staircase(arm_pubs, grip_pos, grip_pub)
