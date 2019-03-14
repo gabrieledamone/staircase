@@ -1,4 +1,4 @@
-  Design Engineering Staircase Robot
+##  Design Engineering Staircase Robot
 </h1>
 
 <h4 align="center">
