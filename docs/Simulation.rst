@@ -5,7 +5,7 @@ Simulation
 Analysis
 ===================================
 
-#. Simulation Success Rate
+#. Simulation Success Rate (70% success for pick&place phase due to friction issues when grabbing the Brick, 95% success for Pushing phase)
 #. Slowed by Technical Problems
 #. Lack of Physical Testing
 
