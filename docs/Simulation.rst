@@ -9,6 +9,6 @@ Analysis
 #. Slowed by Technical Problems
 #. Lack of Physical Testing
 
-.. figure:: pictures/Simulation.png
+.. figure:: pictures/Simulation.PNG
     :align: center
     :figclass: align-center
