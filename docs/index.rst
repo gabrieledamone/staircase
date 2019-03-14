@@ -50,6 +50,7 @@ Contents
    franka
    workstation
    operating
+   Running our Project
    
 .. toctree::
    :maxdepth: 2
